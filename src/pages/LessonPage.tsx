@@ -126,12 +126,60 @@ const LessonPage = () => {
       {lesson.teacherNotes && lesson.teacherNotes.length > 0 && (
         <motion.div {...sectionAnim(0.3)} className="rounded-2xl border-2 border-secondary/30 bg-secondary/5 p-7 shadow-card">
           <SectionHeader icon={Lightbulb} emoji="📚" title="معلومات للمدرس" />
-          <div className="space-y-4">
-            {lesson.teacherNotes.map((note, i) => (
-              <p key={i} className="text-base leading-[1.9] text-foreground/80">
-                {note}
-              </p>
-            ))}
+          <div className="space-y-5">
+            {lesson.teacherNotes.map((note, i) => {
+              // Section header
+              if (note.startsWith('::section::')) {
+                const title = note.replace('::section::', '').trim();
+                return (
+                  <h4 key={i} className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
+                    {title}
+                  </h4>
+                );
+              }
+              // Q&A question
+              if (note.startsWith('::qa::')) {
+                const question = note.replace('::qa::', '').trim();
+                return (
+                  <div key={i} className="rounded-xl bg-primary/10 border border-primary/20 px-5 py-3 mt-4">
+                    <p className="text-base font-bold text-primary">{question}</p>
+                  </div>
+                );
+              }
+              // Note/warning
+              if (note.startsWith('::note::')) {
+                const text = note.replace('::note::', '').trim();
+                return (
+                  <div key={i} className="rounded-xl bg-accent/10 border border-accent/30 px-5 py-3">
+                    <p className="text-sm font-medium text-accent-foreground">⚠️ {text}</p>
+                  </div>
+                );
+              }
+              // Highlight
+              if (note.startsWith('::highlight::')) {
+                const text = note.replace('::highlight::', '').trim();
+                return (
+                  <div key={i} className="rounded-xl bg-gradient-warm p-5 text-center mt-2">
+                    <p className="text-lg font-bold text-primary-foreground leading-loose">{text}</p>
+                  </div>
+                );
+              }
+              // Bullet points
+              if (note.startsWith('•')) {
+                return (
+                  <div key={i} className="flex items-start gap-3 pr-4">
+                    <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
+                    <span className="text-base leading-[1.9] text-foreground/85 font-medium">{note.substring(1).trim()}</span>
+                  </div>
+                );
+              }
+              // Regular paragraph
+              return (
+                <p key={i} className="text-base leading-[1.9] text-foreground/80">
+                  {note}
+                </p>
+              );
+            })}
           </div>
         </motion.div>
       )}
