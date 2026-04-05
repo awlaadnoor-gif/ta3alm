@@ -8,7 +8,7 @@ export interface Lesson {
   verse: string;
   verseSmall?: string;
   teacherNotes: string[];
-  entryActivities: { title: string; content: string[] }[];
+  entryActivities: { title: string; content: string[]; videoUrl?: string }[];
   content: string[];
   discussion: string[];
   prayer: string;
@@ -93,6 +93,15 @@ export const curricula: Curriculum[] = [
               "الطرح للفصل الكبير: لماذا نشعر جميعاً أن الظلم خطأ؟ وأن مساعدة الضعيف صح؟ إذا كنا مجرد تطور عشوائي، فالقوي يأكل الضعيف وهذا طبيعي. لكن وجود (الضمير) يثبت وجود (واضع للقانون الأخلاقي) خارجنا.",
               "الربط: نحن نعرف 'الشر' لأننا نعرف 'الخير'. نحن نعرف 'الظلم' لأن بداخلنا مقياساً لـ 'عدل'. هذا المقياس (الضمير) هو بصمة الله فينا."
             ]
+          },
+          {
+            title: "مدخل 4: فيديو – عظمة الله في الكون",
+            content: [
+              "بيشرح ببساطة عظمة الله في الكون وازاي بنظرة تليسكوبية إن الإنسان صغير جدًا بالنسبة للأرض والأرض نفسها صغيرة بالنسبة للشمس وهكذا...",
+              "ومن ناحية تانية بنظرة ميكروسكوبية لما ندخل في تفاصيل جسم الإنسان وازاي اللي خلق كل تفاصيله حتى أصغر جين في الخلية.",
+              "والسؤال: مين اللي خلق الكون بهذا الاتساع والدقة؟"
+            ],
+            videoUrl: "https://youtu.be/8Are9dDbW24?si=lBwJh6FWvivfZyt-"
           }
         ],
         content: [
