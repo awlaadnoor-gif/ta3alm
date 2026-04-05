@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
+import VideoPlayer from "@/components/VideoPlayer";
 import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
 import { getCurriculumById } from "@/data/curricula";
@@ -106,6 +107,15 @@ const LessonPage = () => {
                     {line}
                   </p>
                 ))}
+                {activity.videoUrl && (
+                  <div className="mt-4">
+                    <VideoPlayer
+                      title={activity.title}
+                      description=""
+                      url={activity.videoUrl}
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
