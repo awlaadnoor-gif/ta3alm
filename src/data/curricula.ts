@@ -13,6 +13,7 @@ export interface Lesson {
   discussion: string[];
   prayer: string;
   prayerGuide?: { encourage: string; guide: string; closing: string };
+  videos?: { title: string; description: string; url: string }[];
 }
 
 export interface Curriculum {
