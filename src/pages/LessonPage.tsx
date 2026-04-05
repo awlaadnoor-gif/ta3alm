@@ -250,11 +250,13 @@ const LessonPage = () => {
                 <span className="text-3xl font-bold text-primary-foreground">{lesson.id}</span>
               </div>
               <div>
-                <p className="text-base text-primary-foreground/70">الدرس {lesson.id}</p>
-                <p className="text-xl text-primary-foreground/50 mb-1"><span className="line-through">❌</span> {lesson.wrongIdea}</p>
-                <h1 className="text-4xl font-bold text-primary-foreground">
-                  ✅ {lesson.title}
+                <p className="text-base text-primary-foreground/70">اليوم {lesson.id}</p>
+                <h1 className="text-4xl font-bold text-primary-foreground mb-1">
+                  ❌ {lesson.wrongIdea}
                 </h1>
+                <p className="text-xl text-primary-foreground/70">
+                  ✅ {lesson.title}
+                </p>
               </div>
             </div>
             <div className="mt-4 flex flex-wrap gap-3">
