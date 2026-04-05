@@ -19,6 +19,14 @@ const lessonColors = [
   "from-rose-500 to-pink-600",
 ];
 
+const lessonTextColors = [
+  "text-orange-600",
+  "text-blue-600",
+  "text-teal-600",
+  "text-purple-600",
+  "text-pink-600",
+];
+
 const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, index }: LessonCardProps) => {
   return (
     <motion.div
@@ -48,8 +56,8 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
         </div>
 
         <div className="p-5">
-          <h3 className="mb-2 text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-            <span className="text-base font-medium text-muted-foreground">❌ {wrongIdea}</span>
+          <h3 className={`mb-2 text-lg font-bold ${lessonTextColors[index % lessonTextColors.length]}`}>
+            ❌ {wrongIdea}
           </h3>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <BookOpen className="h-4 w-4" />
