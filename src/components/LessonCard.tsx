@@ -56,7 +56,7 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
         </div>
 
         <div className="p-5">
-          <h3 className={`mb-2 text-lg font-bold ${lessonTextColors[index % lessonTextColors.length]}`}>
+          <h3 className={`mb-2 text-2xl font-bold ${lessonTextColors[index % lessonTextColors.length]}`}>
             ❌ {wrongIdea}
           </h3>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
