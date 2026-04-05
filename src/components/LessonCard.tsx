@@ -37,7 +37,7 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-background/20 backdrop-blur-sm">
                 <span className="text-lg font-bold text-primary-foreground">{lessonId}</span>
               </div>
-              <span className="text-sm font-medium text-primary-foreground/80">الدرس</span>
+              <span className="text-sm font-medium text-primary-foreground/80">اليوم</span>
             </div>
             <div className="rounded-full bg-background/20 px-3 py-1 backdrop-blur-sm">
               <span className="text-xs font-medium text-primary-foreground">
@@ -56,7 +56,7 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
             <span>{bibleStories}</span>
           </div>
           <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">اقرأ الدرس</span>
+            <span className="text-xs text-muted-foreground">اقرأ اليوم</span>
             <ChevronLeft className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-x-1" />
           </div>
         </div>
