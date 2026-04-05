@@ -241,15 +241,13 @@ const LessonPage = () => {
               </div>
               <div>
                 <p className="text-base text-primary-foreground/70">الدرس {lesson.id}</p>
+                <p className="text-xl line-through text-primary-foreground/50 mb-1">{lesson.wrongIdea}</p>
                 <h1 className="text-4xl font-bold text-primary-foreground">
                   {lesson.title}
                 </h1>
               </div>
             </div>
             <div className="mt-4 flex flex-wrap gap-3">
-              <span className="rounded-full bg-background/20 px-4 py-1.5 text-sm text-primary-foreground backdrop-blur-sm">
-                ❌ الفكرة الخطأ: {lesson.wrongIdea}
-              </span>
               <span className="rounded-full bg-background/20 px-4 py-1.5 text-sm text-primary-foreground backdrop-blur-sm">
                 📖 {lesson.bibleReference}
               </span>
