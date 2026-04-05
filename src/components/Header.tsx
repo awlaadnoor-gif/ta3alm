@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { BookOpen, Home, Library } from "lucide-react";
+import { Home, Library } from "lucide-react";
 import { motion } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const location = useLocation();
@@ -18,11 +19,9 @@ const Header = () => {
     >
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-warm shadow-warm">
-            <BookOpen className="h-5 w-5 text-primary-foreground" />
-          </div>
+          <img src={logo} alt="العب وتعلم" className="h-12 w-12 object-contain" />
           <span className="text-lg font-bold text-foreground font-amiri">
-            مدارس الأحد
+            العب وتعلم
           </span>
         </Link>
 
