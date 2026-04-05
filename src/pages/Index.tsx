@@ -4,7 +4,7 @@ import { BookOpen, ChevronLeft, Sparkles } from "lucide-react";
 import Header from "@/components/Header";
 import LessonCard from "@/components/LessonCard";
 import { getActiveCurriculum } from "@/data/curricula";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/curriculum-cover.jpg";
 
 const Index = () => {
   const activeCurriculum = getActiveCurriculum();
