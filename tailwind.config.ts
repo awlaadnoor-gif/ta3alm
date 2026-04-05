@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        cairo: ["Cairo", "sans-serif"],
+        baloo: ["Baloo Bhaijaan 2", "sans-serif"],
         amiri: ["Amiri", "serif"],
       },
       colors: {
