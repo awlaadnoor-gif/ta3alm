@@ -11,7 +11,7 @@ const CurriculaList = () => {
 
       <section className="container py-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="font-amiri text-3xl font-bold text-foreground">جميع المناهج</h1>
+          <h1 className="text-3xl font-bold text-foreground">جميع المناهج</h1>
           <p className="mt-2 text-muted-foreground">تصفح مناهج مدارس الأحد لجميع السنوات</p>
         </motion.div>
 
