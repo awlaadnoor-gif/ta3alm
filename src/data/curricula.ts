@@ -8,7 +8,7 @@ export interface Lesson {
   verse: string;
   verseSmall?: string;
   teacherNotes: string[];
-  entryActivities: { title: string; content: string[] }[];
+  entryActivities: { title: string; content: string[]; videoUrl?: string }[];
   content: string[];
   discussion: string[];
   prayer: string;
