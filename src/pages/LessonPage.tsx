@@ -224,13 +224,42 @@ const LessonPage = () => {
       {/* Discussion */}
       <motion.div {...sectionAnim(0.4)} className="rounded-2xl border border-border bg-card p-7 shadow-card">
         <SectionHeader icon={MessageCircle} emoji="💬" title="التطبيق والمناقشة" />
-        <ol className="space-y-4 list-decimal list-inside">
-          {lesson.discussion.map((q, i) => (
-            <li key={i} className="text-base leading-relaxed text-foreground/85 marker:font-bold marker:text-primary">
-              {q}
-            </li>
-          ))}
-        </ol>
+        <div className="space-y-4">
+          {(() => {
+            let questionNumber = 0;
+            return lesson.discussion.map((q, i) => {
+              if (q.endsWith(':')) {
+                return (
+                  <h4 key={i} className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
+                    {q.replace(/:$/, '')}
+                  </h4>
+                );
+              }
+              if (q.includes('→')) {
+                return (
+                  <div key={i} className="flex items-start gap-3 pr-4">
+                    <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
+                    <span className="text-base leading-relaxed text-foreground/85 font-medium">{q}</span>
+                  </div>
+                );
+              }
+              if (q.startsWith('يمكن للمعلم')) {
+                return (
+                  <div key={i} className="rounded-xl bg-accent/10 border border-accent/30 px-5 py-3 mt-4">
+                    <p className="text-sm font-medium text-accent-foreground">💡 {q}</p>
+                  </div>
+                );
+              }
+              questionNumber++;
+              return (
+                <div key={i} className="flex items-start gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">{questionNumber}</span>
+                  <span className="text-base leading-relaxed text-foreground/85 pt-0.5">{q}</span>
+                </div>
+              );
+            });
+          })()}
+        </div>
       </motion.div>
 
       {/* Prayer */}
