@@ -54,9 +54,9 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
 
         <div className="p-5">
           <h3 className="mb-2 text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-            <span className="line-through text-muted-foreground/60 text-base font-medium">❌ {wrongIdea}</span>
+            <span className="text-base font-medium text-muted-foreground">❌ {wrongIdea}</span>
             <br />
-            <span>✅ {title}</span>
+            <span className="line-through text-muted-foreground/60">✅ {title}</span>
           </h3>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <BookOpen className="h-4 w-4" />
