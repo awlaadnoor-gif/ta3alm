@@ -40,12 +40,12 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
               <span className="text-sm font-medium text-primary-foreground/80">الدرس</span>
             </div>
             <div className="rounded-full bg-background/20 px-3 py-1 backdrop-blur-sm">
-              <span className="text-xs font-medium text-primary-foreground line-through">
+              <span className="text-xs font-medium text-primary-foreground">
                 ❌ {wrongIdea}
               </span>
             </div>
             <div className="rounded-full bg-background/20 px-3 py-1 backdrop-blur-sm">
-              <span className="text-xs font-medium text-primary-foreground">
+              <span className="text-xs font-medium text-primary-foreground line-through">
                 ✅ {title}
               </span>
             </div>
