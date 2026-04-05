@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -82,10 +82,13 @@
 
   html {
     direction: rtl;
+    font-feature-settings: normal;
+    -webkit-font-feature-settings: normal;
   }
 
   body {
-    @apply bg-background text-foreground font-baloo;
+    @apply bg-background text-foreground;
+    font-family: 'Baloo Bhaijaan 2', sans-serif;
   }
 }
 

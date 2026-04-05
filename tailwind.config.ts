@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        baloo: ["Baloo Bhaijaan 2", "sans-serif"],
-        amiri: ["Amiri", "serif"],
+        baloo: ["'Baloo Bhaijaan 2'", "sans-serif"],
+        amiri: ["'Baloo Bhaijaan 2'", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
