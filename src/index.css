@@ -89,6 +89,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Baloo Bhaijaan 2', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
   }
 }
 

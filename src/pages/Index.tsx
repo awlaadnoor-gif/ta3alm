@@ -14,10 +14,10 @@ const Index = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden min-h-[70vh]">
         <div className="absolute inset-0">
-          <img src={heroBg} alt="" className="h-full w-full object-contain object-center bg-foreground" width={1920} height={1080} />
-          <div className="absolute inset-0 bg-gradient-to-l from-foreground/70 via-foreground/40 to-foreground/70" />
+          <img src={heroBg} alt="" className="h-full w-full object-cover object-top" width={1920} height={1080} />
+          <div className="absolute inset-0 bg-gradient-to-l from-foreground/60 via-foreground/30 to-foreground/60" />
         </div>
         <div className="container relative py-20 md:py-32">
           <motion.div
