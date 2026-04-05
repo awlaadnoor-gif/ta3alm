@@ -59,12 +59,85 @@ const CurriculumPage = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl border border-border bg-card p-6 shadow-card"
+          className="rounded-2xl border border-border bg-card p-8 shadow-card space-y-8"
         >
-          <h2 className="mb-3 text-xl font-bold text-foreground">نظرة عامة عن المنهج</h2>
-          <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-            {curriculum.overview}
-          </p>
+          <h2 className="text-2xl font-bold text-foreground text-center">نظرة عامة عن المنهج</h2>
+
+          {/* Intro paragraphs */}
+          <div className="space-y-4 max-w-3xl mx-auto">
+            <p className="text-base leading-[2] text-foreground/85">
+              في كل جيل، ومنذ بداية وجود الإنسان، يحاول إبليس أن يزرع داخل الفكر البشري صورًا مشوَّهة عن الله. لم تكن حربه يومًا ضد وجود الله ذاته، بل ضد تصوراتنا عنه. لأن إبليس يدرك أن الإنسان إن رأى الله كما هو حقًا، سيقترب إليه، أما إن تشوّهت الصورة، فيبتعد عنه خوفًا أو شكًا أو يأسًا. لذلك كان هدفه الأول دائمًا أن يفصل الإنسان عن الله، لا بالقوة، بل بالفكر.
+            </p>
+            <p className="text-base leading-[2] text-foreground/85">
+              ومن هنا تنطلق فكرة هذا المنهج. فهذه الدروس لا تهدف فقط إلى تقديم معلومات كتابية، بل إلى إعادة تصحيح صورة الله في أذهاننا وقلوبنا. نقترب من الله كما أعلن عن نفسه، لا كما تصوّره مخاوفنا أو خبراتنا المؤلمة أو أفكار العالم من حولنا. يهدف هذا المنهج إلى معالجة صور مشوّهة شائعة عن الله، واستبدالها بالإعلان الكتابي الصحيح، بحيث ينتقل المتعلم من معرفة ذهنية إلى علاقة حيّة واختبار عملي مع الله.
+            </p>
+          </div>
+
+          {/* Goals Title */}
+          <div className="text-center">
+            <h3 className="inline-block text-xl font-bold text-primary bg-primary/10 px-6 py-2 rounded-full">
+              أهداف المنهج – تصحيح أفكار خاطئة عن الله
+            </h3>
+          </div>
+
+          {/* Goals Grid */}
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+            {[
+              {
+                emoji: "1️⃣",
+                title: "الله موجود وحقيقي",
+                body: "نواجه فكرة إنكار وجود الله، ونؤكد أن الإيمان بالله لا يتعارض مع العلم، بل يعطي للحياة معنى وغاية. الهدف هو أن يتحول الإيمان من مجرد فكرة في الذهن إلى علاقة مُعاشة واختبار يومي.",
+              },
+              {
+                emoji: "2️⃣",
+                title: "الله قريب ومهتم وأب محب",
+                body: "نصحح صورة الله البعيد أو غير المهتم أو المتأخر، ونعلن أبوة الله واهتمامه الدائم. الهدف هو بناء ثقة حقيقية في الله، وفهم الصلاة كلقاء مع أب محب لا مجرد وسيلة لتحقيق مطالب.",
+              },
+              {
+                emoji: "3️⃣",
+                title: "الله قوي ومنتصر دائمًا",
+                body: "نواجه فكرة ضعف الله، ونعلن أن قوة الله لا تُقاس بمعايير العالم، وأن الصليب ليس فشلًا بل قمة الانتصار. الهدف هو ترسيخ الإيمان بأن عمل الله محسوم، وليس مرتبطًا بظروف أو أعداد.",
+              },
+              {
+                emoji: "4️⃣",
+                title: "الله للجميع بلا تحيز",
+                body: "نصحح فكرة أن الله منحاز لفئة دون أخرى، ونؤكد أن محبته وخلاصه مقدمان لكل إنسان. الهدف هو التمييز بين رفض الخطية وقبول الخاطئ، وكسر أي شعور بالاستعلاء أو الامتياز الروحي.",
+              },
+              {
+                emoji: "5️⃣",
+                title: "الله يقبلني بنعمته لا باستحقاقي",
+                body: "نواجه الشعور بالرفض وعدم القبول، ونعلن حقيقة النعمة والضمان الأبدي. الهدف هو مساعدة المتعلم على فهم الفرق بين السقوط المتكرر واستباحة الخطية، والعيش بثقة في قبول الله الدائم.",
+              },
+            ].map((goal, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="rounded-xl border border-border bg-background p-5 shadow-sm hover:shadow-card transition-shadow"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-2xl">{goal.emoji}</span>
+                  <h4 className="text-base font-bold text-foreground">{goal.title}</h4>
+                </div>
+                <p className="text-sm leading-[1.9] text-muted-foreground">{goal.body}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Closing */}
+          <div className="rounded-xl bg-gradient-warm p-6 text-center max-w-3xl mx-auto">
+            <p className="text-base leading-[2] text-primary-foreground font-medium">
+              ➡️ هذا المنهج هو رحلة روحية، نتحرر فيها من الأكاذيب، ونستبدلها بالحق الكتابي. رحلة تعيد تشكيل نظرتنا إلى الله، فتقودنا من الخوف إلى الثقة، ومن الشك إلى الإيمان، ومن الشعور بالرفض إلى اليقين بأننا أبناء محبوبون.
+            </p>
+            <p className="mt-4 text-lg font-bold text-primary-foreground">
+              وفي كل درس، سيظل السؤال حاضرًا أمامنا:
+            </p>
+            <p className="mt-2 text-xl font-bold text-primary-foreground">
+              هل نعرف الله كما هو فعلًا، أم كما صُوِّر لنا؟
+            </p>
+          </div>
         </motion.div>
       </section>
 
