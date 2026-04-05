@@ -82,10 +82,13 @@
 
   html {
     direction: rtl;
+    font-feature-settings: normal;
+    -webkit-font-feature-settings: normal;
   }
 
   body {
-    @apply bg-background text-foreground font-baloo;
+    @apply bg-background text-foreground;
+    font-family: 'Baloo Bhaijaan 2', sans-serif;
   }
 }
 
