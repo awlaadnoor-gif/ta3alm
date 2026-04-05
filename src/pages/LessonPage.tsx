@@ -48,6 +48,24 @@ const LessonPage = () => {
   const nextLesson = curriculum.lessons[lessonIndex + 1];
   const colorClass = lessonColors[lessonIndex % lessonColors.length];
 
+  // Detect if a paragraph contains a heading (text before "—" that's short enough)
+  const parseContentParagraph = (text: string): { heading: string | null; body: string } => {
+    const dashIndex = text.indexOf('—');
+    if (dashIndex > 0 && dashIndex < 100) {
+      const beforeDash = text.substring(0, dashIndex).trim();
+      const afterDash = text.substring(dashIndex + 1).trim();
+      if (beforeDash.length < 100 && afterDash.length > 0) {
+        return { heading: beforeDash, body: afterDash };
+      }
+    }
+    // Check for المشهد patterns
+    const sceneMatch = text.match(/^(المشهد\s+[^:]+):\s*(.+)/s);
+    if (sceneMatch) {
+      return { heading: sceneMatch[1], body: sceneMatch[2] };
+    }
+    return { heading: null, body: text };
+  };
+
   const lessonContent = (
     <div className="space-y-10 max-w-4xl mx-auto">
       {/* Objective */}
@@ -94,21 +112,9 @@ const LessonPage = () => {
         </motion.div>
       )}
 
-      {/* Lesson Content */}
-      <motion.div {...sectionAnim(0.3)} className="rounded-2xl border border-border bg-card p-7 shadow-card">
-        <SectionHeader icon={BookOpen} emoji="📝" title="الدرس" />
-        <div className="space-y-5">
-          {lesson.content.map((paragraph, i) => (
-            <p key={i} className="text-base leading-[2] text-foreground/85">
-              {paragraph}
-            </p>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Teacher Notes */}
+      {/* Teacher Notes - BEFORE Lesson Content */}
       {lesson.teacherNotes && lesson.teacherNotes.length > 0 && (
-        <motion.div {...sectionAnim(0.35)} className="rounded-2xl border-2 border-secondary/30 bg-secondary/5 p-7 shadow-card">
+        <motion.div {...sectionAnim(0.3)} className="rounded-2xl border-2 border-secondary/30 bg-secondary/5 p-7 shadow-card">
           <SectionHeader icon={Lightbulb} emoji="📚" title="معلومات للمدرس" />
           <div className="space-y-4">
             {lesson.teacherNotes.map((note, i) => (
@@ -119,6 +125,43 @@ const LessonPage = () => {
           </div>
         </motion.div>
       )}
+
+      {/* Lesson Content */}
+      <motion.div {...sectionAnim(0.35)} className="rounded-2xl border border-border bg-card p-7 shadow-card">
+        <SectionHeader icon={BookOpen} emoji="📝" title="الدرس" />
+        <div className="space-y-5">
+          {lesson.content.map((paragraph, i) => {
+            const { heading, body } = parseContentParagraph(paragraph);
+            // Check if it's a verse (starts with « or ")
+            const isVerse = paragraph.startsWith('«') || paragraph.startsWith('"');
+            
+            if (isVerse) {
+              return (
+                <div key={i} className="rounded-xl bg-primary/5 border border-primary/20 p-5 text-center">
+                  <p className="text-lg font-bold leading-loose text-foreground/90">{paragraph}</p>
+                </div>
+              );
+            }
+            
+            if (heading) {
+              return (
+                <div key={i} className="space-y-3">
+                  <h4 className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
+                    {heading}
+                  </h4>
+                  <p className="text-base leading-[2] text-foreground/85">{body}</p>
+                </div>
+              );
+            }
+            
+            return (
+              <p key={i} className="text-base leading-[2] text-foreground/85">
+                {paragraph}
+              </p>
+            );
+          })}
+        </div>
+      </motion.div>
 
       {/* Discussion */}
       <motion.div {...sectionAnim(0.4)} className="rounded-2xl border border-border bg-card p-7 shadow-card">
