@@ -137,7 +137,7 @@ export const curricula: Curriculum[] = [
       {
         id: 2,
         title: "الله مهتم وقريب",
-        wrongIdea: "مش مهتم أو بعيد أو متأخر",
+        wrongIdea: "مش مهتم",
         bibleReference: "1 ملوك 19 / مرقس 4:35-41 / لوقا 8:22-25 / يوحنا 11",
         bibleStories: "إيليا - النوم في السفينة - لعازر",
         objective: [
@@ -233,7 +233,7 @@ export const curricula: Curriculum[] = [
       {
         id: 3,
         title: "الله قوي ومنتصر",
-        wrongIdea: "مش قوي (ضعيف)",
+        wrongIdea: "مش قوي",
         bibleReference: "متى 26-27 / يوحنا 19 / 1 صموئيل 5-6",
         bibleStories: "الصليب - تابوت العهد وداجون",
         objective: [
@@ -310,7 +310,7 @@ export const curricula: Curriculum[] = [
       {
         id: 4,
         title: "الله للكل بدون تحيز",
-        wrongIdea: "مش للكل (منحاز)",
+        wrongIdea: "مش للكل",
         bibleReference: "يونان 1-4 / أعمال 10",
         bibleStories: "يونان - كرنيليوس",
         objective: [
