@@ -135,18 +135,19 @@ const LessonPage = () => {
       {/* Prayer */}
       <motion.div {...sectionAnim(0.5)} className="rounded-2xl border-2 border-primary/20 bg-primary/5 p-7">
         <SectionHeader icon={Heart} emoji="🙏" title="الصلاة" />
-        <p className="text-lg leading-loose text-foreground/85 italic">
-          {lesson.prayer}
-        </p>
         {lesson.prayerGuide && (
-          <div className="mt-5 space-y-4 border-t border-primary/15 pt-5">
+          <div className="space-y-5">
             <div>
-              <h4 className="text-sm font-bold text-primary mb-1">شجّع الأطفال:</h4>
-              <p className="text-base leading-relaxed text-foreground/75">{lesson.prayerGuide.encourage}</p>
+              <h4 className="text-base font-bold text-primary mb-2">شجّع الأطفال:</h4>
+              <p className="text-lg leading-loose text-foreground/85">{lesson.prayerGuide.encourage}</p>
             </div>
             <div>
-              <h4 className="text-sm font-bold text-primary mb-1">قُد الأطفال:</h4>
-              <p className="text-base leading-relaxed text-foreground/75">{lesson.prayerGuide.guide}</p>
+              <h4 className="text-base font-bold text-primary mb-2">قُد الأطفال:</h4>
+              <p className="text-lg leading-loose text-foreground/85">{lesson.prayerGuide.guide}</p>
+            </div>
+            <div>
+              <h4 className="text-base font-bold text-primary mb-2">اختم الصلاة:</h4>
+              <p className="text-lg leading-loose text-foreground/85 italic">{lesson.prayerGuide.closing}</p>
             </div>
           </div>
         )}
