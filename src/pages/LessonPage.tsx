@@ -249,9 +249,6 @@ const LessonPage = () => {
             </div>
             <div className="mt-4 flex flex-wrap gap-3">
               <span className="rounded-full bg-background/20 px-4 py-1.5 text-sm text-primary-foreground backdrop-blur-sm">
-                ❌ الفكرة الخطأ: {lesson.wrongIdea}
-              </span>
-              <span className="rounded-full bg-background/20 px-4 py-1.5 text-sm text-primary-foreground backdrop-blur-sm">
                 📖 {lesson.bibleReference}
               </span>
               <span className="rounded-full bg-background/20 px-4 py-1.5 text-sm text-primary-foreground backdrop-blur-sm">
