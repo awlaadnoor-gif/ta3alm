@@ -241,9 +241,9 @@ const LessonPage = () => {
               </div>
               <div>
                 <p className="text-base text-primary-foreground/70">الدرس {lesson.id}</p>
-                <p className="text-xl line-through text-primary-foreground/50 mb-1">{lesson.title}</p>
+                <p className="text-xl line-through text-primary-foreground/50 mb-1">❌ {lesson.wrongIdea}</p>
                 <h1 className="text-4xl font-bold text-primary-foreground">
-                  {lesson.wrongIdea}
+                  ✅ {lesson.title}
                 </h1>
               </div>
             </div>

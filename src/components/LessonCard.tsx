@@ -40,8 +40,13 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
               <span className="text-sm font-medium text-primary-foreground/80">الدرس</span>
             </div>
             <div className="rounded-full bg-background/20 px-3 py-1 backdrop-blur-sm">
-              <span className="text-xs font-medium text-primary-foreground">
+              <span className="text-xs font-medium text-primary-foreground line-through">
                 ❌ {wrongIdea}
+              </span>
+            </div>
+            <div className="rounded-full bg-background/20 px-3 py-1 backdrop-blur-sm">
+              <span className="text-xs font-medium text-primary-foreground">
+                ✅ {title}
               </span>
             </div>
           </div>
@@ -49,9 +54,9 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
 
         <div className="p-5">
           <h3 className="mb-2 text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-            <span className="line-through text-muted-foreground/60 text-base font-medium">{title}</span>
+            <span className="line-through text-muted-foreground/60 text-base font-medium">❌ {wrongIdea}</span>
             <br />
-            {wrongIdea}
+            <span>✅ {title}</span>
           </h3>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <BookOpen className="h-4 w-4" />
