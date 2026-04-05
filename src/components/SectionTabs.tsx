@@ -1,14 +1,22 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Music, Video, Scissors } from "lucide-react";
+import { BookOpen, Music, Video, Scissors, Trophy } from "lucide-react";
+import VideoPlayer from "@/components/VideoPlayer";
+
+interface Video {
+  title: string;
+  description: string;
+  url: string;
+}
 
 interface SectionTabsProps {
   lessonContent: React.ReactNode;
+  videos?: Video[];
 }
 
-const SectionTabs = ({ lessonContent }: SectionTabsProps) => {
+const SectionTabs = ({ lessonContent, videos = [] }: SectionTabsProps) => {
   return (
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
-      <TabsList className="grid w-full grid-cols-4 bg-muted/50 rounded-xl p-1 h-auto">
+      <TabsList className="grid w-full grid-cols-5 bg-muted/50 rounded-xl p-1 h-auto">
         <TabsTrigger value="lesson" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
           <BookOpen className="h-4 w-4" />
           <span className="hidden sm:inline">الدرس</span>
@@ -25,6 +33,10 @@ const SectionTabs = ({ lessonContent }: SectionTabsProps) => {
           <Scissors className="h-4 w-4" />
           <span className="hidden sm:inline">أشغال</span>
         </TabsTrigger>
+        <TabsTrigger value="quizzes" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
+          <Trophy className="h-4 w-4" />
+          <span className="hidden sm:inline">مسابقات</span>
+        </TabsTrigger>
       </TabsList>
 
       <TabsContent value="lesson" className="mt-6">
@@ -40,11 +52,19 @@ const SectionTabs = ({ lessonContent }: SectionTabsProps) => {
       </TabsContent>
 
       <TabsContent value="videos" className="mt-6">
-        <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
-          <Video className="mx-auto h-12 w-12 text-muted-foreground/40" />
-          <h3 className="mt-4 text-lg font-semibold text-muted-foreground">فيديوهات الدرس</h3>
-          <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة الفيديوهات قريباً</p>
-        </div>
+        {videos.length > 0 ? (
+          <div className="space-y-6">
+            {videos.map((video, i) => (
+              <VideoPlayer key={i} title={video.title} description={video.description} url={video.url} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
+            <Video className="mx-auto h-12 w-12 text-muted-foreground/40" />
+            <h3 className="mt-4 text-lg font-semibold text-muted-foreground">فيديوهات الدرس</h3>
+            <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة الفيديوهات قريباً</p>
+          </div>
+        )}
       </TabsContent>
 
       <TabsContent value="crafts" className="mt-6">
@@ -52,6 +72,14 @@ const SectionTabs = ({ lessonContent }: SectionTabsProps) => {
           <Scissors className="mx-auto h-12 w-12 text-muted-foreground/40" />
           <h3 className="mt-4 text-lg font-semibold text-muted-foreground">أشغال يدوية</h3>
           <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة الأشغال اليدوية قريباً</p>
+        </div>
+      </TabsContent>
+
+      <TabsContent value="quizzes" className="mt-6">
+        <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
+          <Trophy className="mx-auto h-12 w-12 text-muted-foreground/40" />
+          <h3 className="mt-4 text-lg font-semibold text-muted-foreground">مسابقات الدرس</h3>
+          <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة المسابقات قريباً</p>
         </div>
       </TabsContent>
     </Tabs>
