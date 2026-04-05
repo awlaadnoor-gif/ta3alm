@@ -61,7 +61,39 @@ const LessonPage = () => {
         <p className="font-amiri text-lg font-bold leading-relaxed text-primary-foreground">
           📖 {lesson.verse}
         </p>
+        {lesson.verseSmall && (
+          <p className="font-amiri text-sm leading-relaxed text-primary-foreground/80 mt-3">
+            {lesson.verseSmall}
+          </p>
+        )}
       </motion.div>
+
+      {/* Entry Activities */}
+      {lesson.entryActivities && lesson.entryActivities.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="rounded-2xl border border-accent/30 bg-accent/5 p-6 shadow-card"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-xl">🎭</span>
+            <h3 className="font-bold text-foreground">المدخل التشويقي</h3>
+          </div>
+          <div className="space-y-6">
+            {lesson.entryActivities.map((activity, i) => (
+              <div key={i} className="space-y-2">
+                <h4 className="font-semibold text-sm text-accent-foreground">{activity.title}</h4>
+                {activity.content.map((line, j) => (
+                  <p key={j} className="text-sm leading-relaxed text-foreground/80 pr-4">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       {/* Lesson Content */}
       <motion.div
@@ -83,6 +115,28 @@ const LessonPage = () => {
         </div>
       </motion.div>
 
+      {/* Teacher Notes */}
+      {lesson.teacherNotes && lesson.teacherNotes.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          className="rounded-2xl border border-secondary/30 bg-secondary/5 p-6 shadow-card"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-xl">📚</span>
+            <h3 className="font-bold text-foreground">معلومات للمدرس</h3>
+          </div>
+          <div className="space-y-3">
+            {lesson.teacherNotes.map((note, i) => (
+              <p key={i} className="text-sm leading-relaxed text-foreground/80">
+                {note}
+              </p>
+            ))}
+          </div>
+        </motion.div>
+      )}
+
       {/* Discussion */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -92,7 +146,7 @@ const LessonPage = () => {
       >
         <div className="flex items-center gap-2 mb-4">
           <MessageCircle className="h-5 w-5 text-secondary" />
-          <h3 className="font-bold text-foreground">💬 أسئلة للمناقشة</h3>
+          <h3 className="font-bold text-foreground">💬 التطبيق والمناقشة</h3>
         </div>
         <ol className="space-y-3 list-decimal list-inside">
           {lesson.discussion.map((q, i) => (
@@ -117,6 +171,18 @@ const LessonPage = () => {
         <p className="font-amiri text-base leading-loose text-foreground/80 italic">
           {lesson.prayer}
         </p>
+        {lesson.prayerGuide && (
+          <div className="mt-4 space-y-3 border-t border-primary/10 pt-4">
+            <div>
+              <h4 className="text-xs font-semibold text-primary mb-1">شجّع الأطفال:</h4>
+              <p className="text-xs leading-relaxed text-foreground/70">{lesson.prayerGuide.encourage}</p>
+            </div>
+            <div>
+              <h4 className="text-xs font-semibold text-primary mb-1">قُد الأطفال:</h4>
+              <p className="text-xs leading-relaxed text-foreground/70">{lesson.prayerGuide.guide}</p>
+            </div>
+          </div>
+        )}
       </motion.div>
 
       {/* Navigation */}
