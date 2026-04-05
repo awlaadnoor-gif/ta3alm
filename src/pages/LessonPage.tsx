@@ -263,7 +263,7 @@ const LessonPage = () => {
 
       {/* Content with Tabs */}
       <section className="container py-10">
-        <SectionTabs lessonContent={lessonContent} />
+        <SectionTabs lessonContent={lessonContent} videos={lesson.videos} />
       </section>
     </div>
   );
