@@ -58,11 +58,11 @@ const LessonPage = () => {
         transition={{ delay: 0.2 }}
         className="rounded-2xl bg-gradient-warm p-6 text-center shadow-warm"
       >
-        <p className="font-amiri text-lg font-bold leading-relaxed text-primary-foreground">
+        <p className="text-lg font-bold leading-relaxed text-primary-foreground">
           📖 {lesson.verse}
         </p>
         {lesson.verseSmall && (
-          <p className="font-amiri text-sm leading-relaxed text-primary-foreground/80 mt-3">
+          <p className="text-sm leading-relaxed text-primary-foreground/80 mt-3">
             {lesson.verseSmall}
           </p>
         )}
@@ -168,7 +168,7 @@ const LessonPage = () => {
           <Heart className="h-5 w-5 text-primary" />
           <h3 className="font-bold text-foreground">🙏 الصلاة</h3>
         </div>
-        <p className="font-amiri text-base leading-loose text-foreground/80 italic">
+        <p className="text-base leading-loose text-foreground/80 italic">
           {lesson.prayer}
         </p>
         {lesson.prayerGuide && (
@@ -234,7 +234,7 @@ const LessonPage = () => {
               </div>
               <div>
                 <p className="text-sm text-primary-foreground/70">الدرس {lesson.id}</p>
-                <h1 className="font-amiri text-3xl font-bold text-primary-foreground">
+                <h1 className="text-3xl font-bold text-primary-foreground">
                   {lesson.title}
                 </h1>
               </div>

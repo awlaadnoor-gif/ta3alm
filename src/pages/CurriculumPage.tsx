@@ -39,7 +39,7 @@ const CurriculumPage = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="flex items-center gap-3 mb-2">
-              <h1 className="font-amiri text-4xl font-bold text-primary-foreground">
+              <h1 className="text-4xl font-bold text-primary-foreground">
                 {curriculum.title}
               </h1>
               <span className="rounded-full bg-background/20 px-3 py-1 text-sm text-primary-foreground backdrop-blur-sm">
@@ -61,7 +61,7 @@ const CurriculumPage = () => {
           viewport={{ once: true }}
           className="rounded-2xl border border-border bg-card p-6 shadow-card"
         >
-          <h2 className="mb-3 font-amiri text-xl font-bold text-foreground">نظرة عامة عن المنهج</h2>
+          <h2 className="mb-3 text-xl font-bold text-foreground">نظرة عامة عن المنهج</h2>
           <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
             {curriculum.overview}
           </p>
@@ -70,7 +70,7 @@ const CurriculumPage = () => {
 
       {/* Lessons */}
       <section className="container pb-16">
-        <h2 className="mb-6 font-amiri text-2xl font-bold text-foreground">الدروس</h2>
+        <h2 className="mb-6 text-2xl font-bold text-foreground">الدروس</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {curriculum.lessons.map((lesson, i) => (
             <LessonCard

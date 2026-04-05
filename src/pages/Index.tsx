@@ -30,7 +30,7 @@ const Index = () => {
               <Sparkles className="h-4 w-4 text-accent" />
               <span className="text-sm font-medium text-accent">منهج {activeCurriculum?.year}</span>
             </div>
-            <h1 className="mb-4 font-amiri text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
+            <h1 className="mb-4 text-4xl font-bold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
               مدارس الأحد
             </h1>
             <p className="mb-8 text-lg leading-relaxed text-primary-foreground/80 md:text-xl">
@@ -59,7 +59,7 @@ const Index = () => {
             className="mb-10 flex items-end justify-between"
           >
             <div>
-              <h2 className="font-amiri text-3xl font-bold text-foreground">
+              <h2 className="text-3xl font-bold text-foreground">
                 {activeCurriculum.title} — دروس المنهج
               </h2>
               <p className="mt-2 text-muted-foreground">
@@ -100,7 +100,7 @@ const Index = () => {
             viewport={{ once: true }}
           >
             <BookOpen className="mx-auto h-12 w-12 text-muted-foreground/40" />
-            <h2 className="mt-4 font-amiri text-2xl font-bold text-foreground">
+            <h2 className="mt-4 text-2xl font-bold text-foreground">
               مناهج سابقة
             </h2>
             <p className="mt-2 text-muted-foreground">
@@ -120,7 +120,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border bg-card py-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p className="font-amiri text-base">مدارس الأحد — نتعلم ونلعب مع الله ✝️</p>
+          <p className="text-base">مدارس الأحد — نتعلم ونلعب مع الله ✝️</p>
         </div>
       </footer>
     </div>
