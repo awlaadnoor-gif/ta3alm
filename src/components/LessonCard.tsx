@@ -44,19 +44,12 @@ const LessonCard = ({ lessonId, title, wrongIdea, bibleStories, curriculumId, in
                 ❌ {wrongIdea}
               </span>
             </div>
-            <div className="rounded-full bg-background/20 px-3 py-1 backdrop-blur-sm">
-              <span className="text-xs font-medium text-primary-foreground line-through">
-                ✅ {title}
-              </span>
-            </div>
           </div>
         </div>
 
         <div className="p-5">
           <h3 className="mb-2 text-lg font-bold text-foreground group-hover:text-primary transition-colors">
             <span className="text-base font-medium text-muted-foreground">❌ {wrongIdea}</span>
-            <br />
-            <span className="line-through text-muted-foreground/60">✅ {title}</span>
           </h3>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <BookOpen className="h-4 w-4" />
