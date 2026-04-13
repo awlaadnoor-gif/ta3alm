@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, Chevro
 import VideoPlayer from "@/components/VideoPlayer";
 import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
+import SceneDisplay from "@/components/SceneDisplay";
 import { getCurriculumById } from "@/data/curricula";
 
 const lessonColors = [
