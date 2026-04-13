@@ -1,9 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
+import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb, Theater } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
+import SceneDisplay from "@/components/SceneDisplay";
 import { getCurriculumById } from "@/data/curricula";
 
 const lessonColors = [
@@ -72,14 +73,32 @@ const LessonPage = () => {
       {/* Objective */}
       <motion.div {...sectionAnim(0.1)} className="rounded-2xl border-2 border-primary/20 bg-primary/5 p-7 shadow-card">
         <SectionHeader icon={Target} emoji="🎯" title="الهدف" />
-        <ul className="space-y-3 pr-2">
-          {lesson.objective.map((point, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
-              <span className="text-base leading-relaxed text-foreground/85">{point}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="space-y-3 pr-2">
+          {lesson.objective.map((point, i) => {
+            if (point.startsWith('::section::')) {
+              const title = point.replace('::section::', '').trim();
+              return (
+                <h4 key={i} className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
+                  {title}
+                </h4>
+              );
+            }
+            if (point.startsWith('::bold::')) {
+              const text = point.replace('::bold::', '').trim();
+              return (
+                <p key={i} className="text-base font-bold leading-relaxed text-foreground/90 pr-4 pt-2">
+                  {text}
+                </p>
+              );
+            }
+            return (
+              <div key={i} className="flex items-start gap-3">
+                <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
+                <span className="text-base leading-relaxed text-foreground/85">{point}</span>
+              </div>
+            );
+          })}
+        </div>
       </motion.div>
 
       {/* Verse */}
@@ -184,14 +203,31 @@ const LessonPage = () => {
         </motion.div>
       )}
 
+      {/* Scenes (Dramatic) */}
+      {lesson.scenes && lesson.scenes.length > 0 && (
+        <motion.div {...sectionAnim(0.32)} className="rounded-2xl border-2 border-violet-200 bg-violet-50/30 p-7 shadow-card">
+          <SectionHeader icon={Theater} emoji="🎭" title="الاسكتش التمثيلي — مفيبوشث" />
+          <SceneDisplay scenes={lesson.scenes} />
+        </motion.div>
+      )}
+
       {/* Lesson Content */}
       <motion.div {...sectionAnim(0.35)} className="rounded-2xl border border-border bg-card p-7 shadow-card">
         <SectionHeader icon={BookOpen} emoji="📝" title="الدرس" />
         <div className="space-y-5">
           {lesson.content.map((paragraph, i) => {
+            // Section header
+            if (paragraph.startsWith('::section::')) {
+              const title = paragraph.replace('::section::', '').trim();
+              return (
+                <h4 key={i} className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
+                  {title}
+                </h4>
+              );
+            }
+            
             const { heading, body } = parseContentParagraph(paragraph);
-            // Check if it's a verse (starts with « or ")
-            const isVerse = paragraph.startsWith('«') || paragraph.startsWith('"');
+            const isVerse = paragraph.startsWith('«') || paragraph.startsWith('"') || paragraph.startsWith('\"');
             
             if (isVerse) {
               return (
