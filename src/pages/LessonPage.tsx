@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
+import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb, Theater } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
