@@ -216,9 +216,18 @@ const LessonPage = () => {
         <SectionHeader icon={BookOpen} emoji="📝" title="الدرس" />
         <div className="space-y-5">
           {lesson.content.map((paragraph, i) => {
+            // Section header
+            if (paragraph.startsWith('::section::')) {
+              const title = paragraph.replace('::section::', '').trim();
+              return (
+                <h4 key={i} className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
+                  {title}
+                </h4>
+              );
+            }
+            
             const { heading, body } = parseContentParagraph(paragraph);
-            // Check if it's a verse (starts with « or ")
-            const isVerse = paragraph.startsWith('«') || paragraph.startsWith('"');
+            const isVerse = paragraph.startsWith('«') || paragraph.startsWith('"') || paragraph.startsWith('\"');
             
             if (isVerse) {
               return (
