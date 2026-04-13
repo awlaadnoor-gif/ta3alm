@@ -73,14 +73,32 @@ const LessonPage = () => {
       {/* Objective */}
       <motion.div {...sectionAnim(0.1)} className="rounded-2xl border-2 border-primary/20 bg-primary/5 p-7 shadow-card">
         <SectionHeader icon={Target} emoji="🎯" title="الهدف" />
-        <ul className="space-y-3 pr-2">
-          {lesson.objective.map((point, i) => (
-            <li key={i} className="flex items-start gap-3">
-              <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
-              <span className="text-base leading-relaxed text-foreground/85">{point}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="space-y-3 pr-2">
+          {lesson.objective.map((point, i) => {
+            if (point.startsWith('::section::')) {
+              const title = point.replace('::section::', '').trim();
+              return (
+                <h4 key={i} className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
+                  {title}
+                </h4>
+              );
+            }
+            if (point.startsWith('::bold::')) {
+              const text = point.replace('::bold::', '').trim();
+              return (
+                <p key={i} className="text-base font-bold leading-relaxed text-foreground/90 pr-4 pt-2">
+                  {text}
+                </p>
+              );
+            }
+            return (
+              <div key={i} className="flex items-start gap-3">
+                <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
+                <span className="text-base leading-relaxed text-foreground/85">{point}</span>
+              </div>
+            );
+          })}
+        </div>
       </motion.div>
 
       {/* Verse */}
