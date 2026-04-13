@@ -1,3 +1,15 @@
+export interface DialogueLine {
+  speaker: string;
+  text: string;
+  stageDirection?: string;
+}
+
+export interface Scene {
+  title: string;
+  description?: string;
+  dialogue: DialogueLine[];
+}
+
 export interface Lesson {
   id: number;
   title: string;
@@ -10,6 +22,7 @@ export interface Lesson {
   teacherNotes: string[];
   entryActivities: { title: string; content: string[]; videoUrl?: string }[];
   content: string[];
+  scenes?: Scene[];
   discussion: string[];
   prayer: string;
   prayerGuide?: { encourage: string; guide: string; closing: string };
