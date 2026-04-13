@@ -203,6 +203,14 @@ const LessonPage = () => {
         </motion.div>
       )}
 
+      {/* Scenes (Dramatic) */}
+      {lesson.scenes && lesson.scenes.length > 0 && (
+        <motion.div {...sectionAnim(0.32)} className="rounded-2xl border-2 border-violet-200 bg-violet-50/30 p-7 shadow-card">
+          <SectionHeader icon={Theater} emoji="🎭" title="الاسكتش التمثيلي — مفيبوشث" />
+          <SceneDisplay scenes={lesson.scenes} />
+        </motion.div>
+      )}
+
       {/* Lesson Content */}
       <motion.div {...sectionAnim(0.35)} className="rounded-2xl border border-border bg-card p-7 shadow-card">
         <SectionHeader icon={BookOpen} emoji="📝" title="الدرس" />
