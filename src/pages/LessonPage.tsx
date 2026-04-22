@@ -113,37 +113,9 @@ const LessonPage = () => {
         )}
       </motion.div>
 
-      {/* Entry Activities */}
-      {lesson.entryActivities && lesson.entryActivities.length > 0 && (
-        <motion.div {...sectionAnim(0.25)} className="rounded-2xl border-2 border-accent/30 bg-accent/5 p-7 shadow-card">
-          <SectionHeader emoji="🎭" title="المدخل التشويقي" />
-          <div className="space-y-7">
-            {lesson.entryActivities.map((activity, i) => (
-              <div key={i} className="space-y-3">
-                <h4 className="font-bold text-base text-accent-foreground border-r-4 border-accent pr-3">{activity.title}</h4>
-                {activity.content.map((line, j) => (
-                  <p key={j} className="text-base leading-relaxed text-foreground/80 pr-6">
-                    {line}
-                  </p>
-                ))}
-                {activity.videoUrl && (
-                  <div className="mt-4">
-                    <VideoPlayer
-                      title={activity.title}
-                      description=""
-                      url={activity.videoUrl}
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      )}
-
-      {/* Teacher Notes - BEFORE Lesson Content */}
+      {/* Teacher Notes - FIRST */}
       {lesson.teacherNotes && lesson.teacherNotes.length > 0 && (
-        <motion.div {...sectionAnim(0.3)} className="rounded-2xl border-2 border-secondary/30 bg-secondary/5 p-7 shadow-card">
+        <motion.div {...sectionAnim(0.25)} className="rounded-2xl border-2 border-secondary/30 bg-secondary/5 p-7 shadow-card">
           <SectionHeader icon={Lightbulb} emoji="📚" title="معلومات للمدرس" />
           <div className="space-y-5">
             {lesson.teacherNotes.map((note, i) => {
