@@ -16,13 +16,19 @@ interface Craft {
   steps: string[];
 }
 
+interface Hymn {
+  title: string;
+  lines: string[];
+}
+
 interface SectionTabsProps {
   lessonContent: React.ReactNode;
   videos?: Video[];
   craft?: Craft;
+  hymns?: Hymn[];
 }
 
-const SectionTabs = ({ lessonContent, videos = [], craft }: SectionTabsProps) => {
+const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [] }: SectionTabsProps) => {
   return (
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
       <TabsList className="grid w-full grid-cols-5 bg-muted/50 rounded-xl p-1 h-auto">
