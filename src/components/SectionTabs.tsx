@@ -16,13 +16,19 @@ interface Craft {
   steps: string[];
 }
 
+interface Hymn {
+  title: string;
+  lines: string[];
+}
+
 interface SectionTabsProps {
   lessonContent: React.ReactNode;
   videos?: Video[];
   craft?: Craft;
+  hymns?: Hymn[];
 }
 
-const SectionTabs = ({ lessonContent, videos = [], craft }: SectionTabsProps) => {
+const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [] }: SectionTabsProps) => {
   return (
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
       <TabsList className="grid w-full grid-cols-5 bg-muted/50 rounded-xl p-1 h-auto">
@@ -53,11 +59,29 @@ const SectionTabs = ({ lessonContent, videos = [], craft }: SectionTabsProps) =>
       </TabsContent>
 
       <TabsContent value="hymns" className="mt-6">
-        <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
-          <Music className="mx-auto h-12 w-12 text-muted-foreground/40" />
-          <h3 className="mt-4 text-lg font-semibold text-muted-foreground">ترانيم الدرس</h3>
-          <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة الترانيم قريباً</p>
-        </div>
+        {hymns.length > 0 ? (
+          <div className="space-y-6 max-w-4xl mx-auto">
+            {hymns.map((h, i) => (
+              <div key={i} className="rounded-2xl border border-border bg-card p-7 shadow-card">
+                <div className="flex items-center gap-3 mb-5">
+                  <Music className="h-6 w-6 text-primary" />
+                  <h3 className="text-xl font-bold text-foreground">{h.title}</h3>
+                </div>
+                <div className="space-y-3">
+                  {h.lines.map((line, j) => (
+                    <p key={j} className="text-base leading-[2] text-foreground/85">{line}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
+            <Music className="mx-auto h-12 w-12 text-muted-foreground/40" />
+            <h3 className="mt-4 text-lg font-semibold text-muted-foreground">ترانيم الدرس</h3>
+            <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة الترانيم قريباً</p>
+          </div>
+        )}
       </TabsContent>
 
       <TabsContent value="videos" className="mt-6">
