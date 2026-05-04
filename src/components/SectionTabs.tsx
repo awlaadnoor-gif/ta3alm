@@ -8,12 +8,21 @@ interface Video {
   url: string;
 }
 
+interface Craft {
+  title: string;
+  idea: string;
+  image: string;
+  tools: string[];
+  steps: string[];
+}
+
 interface SectionTabsProps {
   lessonContent: React.ReactNode;
   videos?: Video[];
+  craft?: Craft;
 }
 
-const SectionTabs = ({ lessonContent, videos = [] }: SectionTabsProps) => {
+const SectionTabs = ({ lessonContent, videos = [], craft }: SectionTabsProps) => {
   return (
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
       <TabsList className="grid w-full grid-cols-5 bg-muted/50 rounded-xl p-1 h-auto">
