@@ -34,6 +34,7 @@ export interface Lesson {
     tools: string[];
     steps: string[];
   };
+  hymns?: { title: string; lines: string[] }[];
 }
 
 export interface Curriculum {
