@@ -27,6 +27,13 @@ export interface Lesson {
   prayer: string;
   prayerGuide?: { encourage: string; guide: string; closing: string };
   videos?: { title: string; description: string; url: string }[];
+  craft?: {
+    title: string;
+    idea: string;
+    image: string;
+    tools: string[];
+    steps: string[];
+  };
 }
 
 export interface Curriculum {
