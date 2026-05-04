@@ -342,7 +342,7 @@ export const curricula: Curriculum[] = [
         craft: {
           title: "دائماً الله معي ♥",
           idea: "3 دوائر معلقة بالخيط لتعبر عن شعور الأطفال في يومهم وحقيقة موقف الله في هذه الظروف",
-          image: "/src/assets/craft-day2.jpeg",
+          image: "/crafts/craft-day2.jpeg",
           tools: ["ورق مقوى ملون", "مقص", "صمغ", "أقلام تلوين", "خيط"],
           steps: [
             "قص الورق المقوى على شكل دوائر",
