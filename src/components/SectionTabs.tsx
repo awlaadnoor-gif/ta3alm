@@ -77,11 +77,54 @@ const SectionTabs = ({ lessonContent, videos = [], craft }: SectionTabsProps) =>
       </TabsContent>
 
       <TabsContent value="crafts" className="mt-6">
-        <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
-          <Scissors className="mx-auto h-12 w-12 text-muted-foreground/40" />
-          <h3 className="mt-4 text-lg font-semibold text-muted-foreground">أشغال يدوية</h3>
-          <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة الأشغال اليدوية قريباً</p>
-        </div>
+        {craft ? (
+          <div className="space-y-8 max-w-4xl mx-auto">
+            <div className="rounded-2xl bg-gradient-warm p-8 text-center shadow-warm">
+              <p className="text-sm text-primary-foreground/80 mb-2">الشغل اليدوي</p>
+              <h3 className="text-3xl font-bold text-primary-foreground">{craft.title}</h3>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+              <img src={craft.image} alt={craft.title} className="w-full rounded-xl object-contain max-h-[700px] mx-auto" />
+            </div>
+
+            <div className="rounded-2xl border-2 border-accent/30 bg-accent/5 p-7 shadow-card">
+              <h4 className="text-xl font-bold mb-3 flex items-center gap-2">💡 فكرة النشاط</h4>
+              <p className="text-base leading-[1.9] text-foreground/85">{craft.idea}</p>
+            </div>
+
+            <div className="rounded-2xl border-2 border-primary/20 bg-primary/5 p-7 shadow-card">
+              <h4 className="text-xl font-bold mb-4 flex items-center gap-2">✂️ الأدوات</h4>
+              <div className="flex flex-wrap gap-3">
+                {craft.tools.map((tool, i) => (
+                  <span key={i} className="rounded-full bg-background px-4 py-2 text-sm font-medium border border-border shadow-sm">
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card p-7 shadow-card">
+              <h4 className="text-xl font-bold mb-5 flex items-center gap-2">⚙️ طريقة العمل</h4>
+              <ol className="space-y-4">
+                {craft.steps.map((step, i) => (
+                  <li key={i} className="flex items-start gap-4">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-sm">
+                      {i + 1}
+                    </span>
+                    <span className="text-base leading-[1.9] text-foreground/85 pt-1">{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
+            <Scissors className="mx-auto h-12 w-12 text-muted-foreground/40" />
+            <h3 className="mt-4 text-lg font-semibold text-muted-foreground">أشغال يدوية</h3>
+            <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة الأشغال اليدوية قريباً</p>
+          </div>
+        )}
       </TabsContent>
 
       <TabsContent value="quizzes" className="mt-6">
