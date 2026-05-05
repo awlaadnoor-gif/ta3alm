@@ -18,7 +18,8 @@ interface Craft {
 
 interface Hymn {
   title: string;
-  lines: string[];
+  lines?: string[];
+  image?: string;
 }
 
 interface SectionTabsProps {
@@ -67,11 +68,16 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [] }: SectionT
                   <Music className="h-6 w-6 text-primary" />
                   <h3 className="text-xl font-bold text-foreground">{h.title}</h3>
                 </div>
-                <div className="space-y-3">
-                  {h.lines.map((line, j) => (
-                    <p key={j} className="text-base leading-[2] text-foreground/85">{line}</p>
-                  ))}
-                </div>
+                {h.image && (
+                  <img src={h.image} alt={h.title} className="w-full rounded-xl object-contain max-h-[1100px] mx-auto mb-4" />
+                )}
+                {h.lines && (
+                  <div className="space-y-3">
+                    {h.lines.map((line, j) => (
+                      <p key={j} className="text-base leading-[2] text-foreground/85">{line}</p>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
