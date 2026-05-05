@@ -40,6 +40,7 @@ interface SectionTabsProps {
 const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = [] }: SectionTabsProps) => {
   const [zoomImage, setZoomImage] = useState<{ src: string; title: string } | null>(null);
   return (
+    <>
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
       <TabsList className="grid w-full grid-cols-5 bg-muted/50 rounded-xl p-1 h-auto">
         <TabsTrigger value="lesson" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
