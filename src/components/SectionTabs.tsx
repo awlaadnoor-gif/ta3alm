@@ -70,18 +70,30 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
 
       <TabsContent value="hymns" className="mt-6">
         {hymns.length > 0 ? (
-          <div className="space-y-6 max-w-4xl mx-auto">
+          <div className="space-y-8 max-w-5xl mx-auto">
             {hymns.map((h, i) => (
-              <div key={i} className="rounded-2xl border border-border bg-card p-7 shadow-card">
-                <div className="flex items-center gap-3 mb-5">
-                  <Music className="h-6 w-6 text-primary" />
+              <div key={i} className="rounded-3xl border border-border bg-gradient-to-br from-card to-muted/20 overflow-hidden shadow-card">
+                <div className="flex items-center gap-3 px-7 py-5 bg-primary/5 border-b border-border">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
+                    <Music className="h-5 w-5 text-primary" />
+                  </div>
                   <h3 className="text-xl font-bold text-foreground">{h.title}</h3>
                 </div>
                 {h.image && (
-                  <img src={h.image} alt={h.title} className="w-full rounded-xl object-contain max-h-[1100px] mx-auto mb-4" />
+                  <button
+                    type="button"
+                    onClick={() => setZoomImage({ src: h.image!, title: h.title })}
+                    className="group relative block w-full bg-background"
+                  >
+                    <img src={h.image} alt={h.title} className="w-full object-contain max-h-[1400px] mx-auto" loading="lazy" />
+                    <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-background/90 backdrop-blur px-3 py-1.5 text-xs font-medium text-foreground shadow-card opacity-80 group-hover:opacity-100 transition">
+                      <Maximize2 className="h-3.5 w-3.5" />
+                      تكبير
+                    </div>
+                  </button>
                 )}
                 {h.lines && (
-                  <div className="space-y-3">
+                  <div className="space-y-3 p-7">
                     {h.lines.map((line, j) => (
                       <p key={j} className="text-base leading-[2] text-foreground/85">{line}</p>
                     ))}
