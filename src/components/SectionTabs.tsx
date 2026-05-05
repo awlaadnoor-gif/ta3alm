@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { BookOpen, Music, Video, Scissors, Trophy, Maximize2 } from "lucide-react";
+import { BookOpen, Music, Video, Scissors, Trophy, Maximize2, Download } from "lucide-react";
 import { useState } from "react";
 import VideoPlayer from "@/components/VideoPlayer";
 
