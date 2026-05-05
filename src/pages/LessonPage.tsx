@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb, Theater } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
@@ -33,6 +34,10 @@ const LessonPage = () => {
   const { id, lessonId } = useParams<{ id: string; lessonId: string }>();
   const curriculum = getCurriculumById(id || "");
   const lesson = curriculum?.lessons.find((l) => l.id === Number(lessonId));
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [lessonId]);
 
   if (!curriculum || !lesson) {
     return (
