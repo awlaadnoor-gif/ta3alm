@@ -83,11 +83,23 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
           <div className="space-y-8 max-w-5xl mx-auto">
             {hymns.map((h, i) => (
               <div key={i} className="rounded-3xl border border-border bg-gradient-to-br from-card to-muted/20 overflow-hidden shadow-card">
-                <div className="flex items-center gap-3 px-7 py-5 bg-primary/5 border-b border-border">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                    <Music className="h-5 w-5 text-primary" />
+                <div className="flex items-center justify-between gap-3 px-7 py-5 bg-primary/5 border-b border-border">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                      <Music className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground truncate">{h.title}</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground">{h.title}</h3>
+                  {h.image && (
+                    <button
+                      type="button"
+                      onClick={() => downloadFile(h.image!, h.title)}
+                      className="flex shrink-0 items-center gap-1.5 rounded-full bg-background border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-primary hover:text-primary-foreground transition shadow-sm"
+                    >
+                      <Download className="h-3.5 w-3.5" />
+                      تنزيل
+                    </button>
+                  )}
                 </div>
                 {h.image && (
                   <button
