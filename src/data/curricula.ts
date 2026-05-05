@@ -35,6 +35,7 @@ export interface Lesson {
     steps: string[];
   };
   hymns?: { title: string; lines?: string[]; image?: string }[];
+  quizzes?: { title: string; image: string }[];
 }
 
 export interface Curriculum {
@@ -212,6 +213,11 @@ export const curricula: Curriculum[] = [
             title: "ترانيم اليوم الأول (جهاز الأشعة)",
             image: "/hymns/hymns-day1.jpeg"
           }
+        ],
+        quizzes: [
+          { title: "مسابقة اليوم الأول - صفحة 1", image: "/quizzes/quiz-day1-p1.jpg" },
+          { title: "مسابقة اليوم الأول - صفحة 2", image: "/quizzes/quiz-day1-p2.jpg" },
+          { title: "مسابقة اليوم الأول - صفحة 3", image: "/quizzes/quiz-day1-p3.jpg" }
         ]
       },
       {
@@ -272,14 +278,8 @@ export const curricula: Curriculum[] = [
         ],
         hymns: [
           {
-            title: "عيني ممكن تضحك عليّا! (خداع بصري)",
-            lines: [
-              "الفكرة: \"عيني ممكن تضحك عليّا!\"",
-              "تجربة (خداع بصري): ارسم خطين متساويين بالطول، لكن واحد حواليه أسهم للداخل والتاني أسهمه للخارج — هيبانوا مختلفين في الطول.",
-              "نسأل: \"مين أطول؟\" هيختلفوا.",
-              "بعدها قيسيهم → نفس الطول.",
-              "الجملة: \"مش كل اللي بشوفه بعيني... يبقى هو بس الحقيقة\"!"
-            ]
+            title: "ترانيم اليوم الثاني (مش موجود)",
+            image: "/hymns/hymns-day2.jpg"
           }
         ],
         content: [
