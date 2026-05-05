@@ -143,7 +143,7 @@ const CurriculumPage = () => {
 
       {/* Lessons */}
       <section className="container pb-16">
-        <h2 className="mb-6 text-2xl font-bold text-foreground">الدروس</h2>
+        <h2 className="mb-6 text-2xl font-bold text-foreground">البرنامج</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {curriculum.lessons.map((lesson, i) => (
             <LessonCard
