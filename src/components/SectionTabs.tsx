@@ -157,7 +157,15 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
               <h3 className="text-3xl font-bold text-primary-foreground">{craft.title}</h3>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-card relative">
+              <button
+                type="button"
+                onClick={() => downloadFile(craft.image, craft.title)}
+                className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-full bg-background/95 backdrop-blur border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-primary hover:text-primary-foreground transition shadow-card"
+              >
+                <Download className="h-3.5 w-3.5" />
+                تنزيل
+              </button>
               <img src={craft.image} alt={craft.title} className="w-full rounded-xl object-contain max-h-[700px] mx-auto" />
             </div>
 
