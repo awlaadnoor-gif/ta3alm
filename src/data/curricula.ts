@@ -34,7 +34,7 @@ export interface Lesson {
     tools: string[];
     steps: string[];
   };
-  hymns?: { title: string; lines: string[] }[];
+  hymns?: { title: string; lines?: string[]; image?: string }[];
 }
 
 export interface Curriculum {
@@ -205,6 +205,12 @@ export const curricula: Curriculum[] = [
             title: "عظمة الله في الكون",
             description: "بيشرح ببساطة عظمة الله في الكون وازاي بنظرة تليسكوبية إن الإنسان صغير جدًا بالنسبة للأرض والأرض نفسها صغيرة بالنسبة للشمس وهكذا… ومن ناحية تانية بنظرة ميكروسكوبية لما ندخل في تفاصيل جسم الإنسان وازاي اللي خلق كل تفاصيله حتى أصغر جين في الخلية. والسؤال: مين اللي خلق الكون بهذا الاتساع والدقة؟",
             url: "https://youtu.be/8Are9dDbW24"
+          }
+        ],
+        hymns: [
+          {
+            title: "ترانيم اليوم الأول (جهاز الأشعة)",
+            image: "/hymns/hymns-day1.jpeg"
           }
         ]
       },
