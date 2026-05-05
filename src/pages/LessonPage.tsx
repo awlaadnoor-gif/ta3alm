@@ -5,6 +5,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
 import SceneDisplay from "@/components/SceneDisplay";
+import BibleReferenceViewer from "@/components/BibleReferenceViewer";
 import { getCurriculumById } from "@/data/curricula";
 
 const lessonColors = [
@@ -373,9 +374,7 @@ const LessonPage = () => {
               </div>
             </div>
             <div className="mt-4 flex flex-wrap gap-3">
-              <span className="rounded-full bg-background/20 px-4 py-1.5 text-sm text-primary-foreground backdrop-blur-sm">
-                📖 {lesson.bibleReference}
-              </span>
+              <BibleReferenceViewer reference={lesson.bibleReference} />
               <span className="rounded-full bg-background/20 px-4 py-1.5 text-sm text-primary-foreground backdrop-blur-sm">
                 📚 {lesson.bibleStories}
               </span>
