@@ -1,5 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Music, Video, Scissors, Trophy } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { BookOpen, Music, Video, Scissors, Trophy, Maximize2 } from "lucide-react";
+import { useState } from "react";
 import VideoPlayer from "@/components/VideoPlayer";
 
 interface Video {
@@ -22,14 +24,21 @@ interface Hymn {
   image?: string;
 }
 
+interface Quiz {
+  title: string;
+  image: string;
+}
+
 interface SectionTabsProps {
   lessonContent: React.ReactNode;
   videos?: Video[];
   craft?: Craft;
   hymns?: Hymn[];
+  quizzes?: Quiz[];
 }
 
-const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [] }: SectionTabsProps) => {
+const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = [] }: SectionTabsProps) => {
+  const [zoomImage, setZoomImage] = useState<{ src: string; title: string } | null>(null);
   return (
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
       <TabsList className="grid w-full grid-cols-5 bg-muted/50 rounded-xl p-1 h-auto">
