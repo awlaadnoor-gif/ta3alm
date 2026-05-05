@@ -35,6 +35,10 @@ const LessonPage = () => {
   const curriculum = getCurriculumById(id || "");
   const lesson = curriculum?.lessons.find((l) => l.id === Number(lessonId));
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [lessonId]);
+
   if (!curriculum || !lesson) {
     return (
       <div className="min-h-screen bg-background">
