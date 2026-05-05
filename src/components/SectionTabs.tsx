@@ -179,13 +179,49 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
       </TabsContent>
 
       <TabsContent value="quizzes" className="mt-6">
-        <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
-          <Trophy className="mx-auto h-12 w-12 text-muted-foreground/40" />
-          <h3 className="mt-4 text-lg font-semibold text-muted-foreground">مسابقات الدرس</h3>
-          <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة المسابقات قريباً</p>
-        </div>
+        {quizzes.length > 0 ? (
+          <div className="space-y-8 max-w-5xl mx-auto">
+            {quizzes.map((q, i) => (
+              <div key={i} className="rounded-3xl border border-border bg-gradient-to-br from-card to-muted/20 overflow-hidden shadow-card">
+                <div className="flex items-center gap-3 px-7 py-5 bg-accent/10 border-b border-border">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/20">
+                    <Trophy className="h-5 w-5 text-accent-foreground" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">{q.title}</h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setZoomImage({ src: q.image, title: q.title })}
+                  className="group relative block w-full bg-background"
+                >
+                  <img src={q.image} alt={q.title} className="w-full object-contain max-h-[1400px] mx-auto" loading="lazy" />
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-background/90 backdrop-blur px-3 py-1.5 text-xs font-medium text-foreground shadow-card opacity-80 group-hover:opacity-100 transition">
+                    <Maximize2 className="h-3.5 w-3.5" />
+                    تكبير
+                  </div>
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-border bg-muted/30 p-12 text-center">
+            <Trophy className="mx-auto h-12 w-12 text-muted-foreground/40" />
+            <h3 className="mt-4 text-lg font-semibold text-muted-foreground">مسابقات الدرس</h3>
+            <p className="mt-2 text-sm text-muted-foreground/60">سيتم إضافة المسابقات قريباً</p>
+          </div>
+        )}
       </TabsContent>
     </Tabs>
+
+    <Dialog open={!!zoomImage} onOpenChange={(open) => !open && setZoomImage(null)}>
+      <DialogContent className="max-w-[95vw] max-h-[95vh] p-2 overflow-auto" dir="rtl">
+        <DialogTitle className="sr-only">{zoomImage?.title}</DialogTitle>
+        {zoomImage && (
+          <img src={zoomImage.src} alt={zoomImage.title} className="w-full h-auto object-contain" />
+        )}
+      </DialogContent>
+    </Dialog>
+    </>
   );
 };
 
