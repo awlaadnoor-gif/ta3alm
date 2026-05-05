@@ -66,7 +66,7 @@ export const curricula: Curriculum[] = [
         id: 1,
         title: "الله موجود",
         wrongIdea: "مش موجود",
-        bibleReference: "دانيال 4 - أعمال 12",
+        bibleReference: "دانيال 4 / أعمال 12",
         bibleStories: "نبوخذنصر - هيرودس",
         objective: [
           "أن يميز الطفل بين الفكرة الخطأ 'مفيش ربنا' وأن وجود الله حقيقة ثابتة.",
@@ -540,7 +540,7 @@ export const curricula: Curriculum[] = [
         id: 5,
         title: "الله يقبلنا بنعمته",
         wrongIdea: "مش بيقبلني",
-        bibleReference: "مفيبوشث (2 صم 9), الأبرص (مر 1: 40)",
+        bibleReference: "2 صموئيل 9 / مرقس 1: 40-45",
         bibleStories: "مفيبوشث - الأبرص",
         objective: [
           "::section::أولاً: صورة مشوّهة في ذهن الإنسان",

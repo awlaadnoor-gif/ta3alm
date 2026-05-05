@@ -94,7 +94,7 @@ const BibleReferenceViewer = ({ reference, className = "" }: Props) => {
                           الإصحاح {c.chapter}
                         </h4>
                       )}
-                      <p className="text-base leading-[2.2] text-foreground/90">
+                      <p dir="rtl" className="text-base leading-[2.2] text-foreground/90 text-right">
                         {c.verses.map((v) => (
                           <span key={v.pk}>
                             <sup className="text-primary font-bold mx-1">{v.verse}</sup>
