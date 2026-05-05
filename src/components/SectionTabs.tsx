@@ -39,6 +39,15 @@ interface SectionTabsProps {
 
 const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = [] }: SectionTabsProps) => {
   const [zoomImage, setZoomImage] = useState<{ src: string; title: string } | null>(null);
+
+  const downloadFile = (src: string, name: string) => {
+    const a = document.createElement("a");
+    a.href = src;
+    a.download = name + (src.match(/\.[a-z0-9]+$/i)?.[0] || "");
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
   return (
     <>
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
