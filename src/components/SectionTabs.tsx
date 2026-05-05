@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { BookOpen, Music, Video, Scissors, Trophy, Maximize2 } from "lucide-react";
+import { BookOpen, Music, Video, Scissors, Trophy, Maximize2, Download } from "lucide-react";
 import { useState } from "react";
 import VideoPlayer from "@/components/VideoPlayer";
 
@@ -39,6 +39,15 @@ interface SectionTabsProps {
 
 const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = [] }: SectionTabsProps) => {
   const [zoomImage, setZoomImage] = useState<{ src: string; title: string } | null>(null);
+
+  const downloadFile = (src: string, name: string) => {
+    const a = document.createElement("a");
+    a.href = src;
+    a.download = name + (src.match(/\.[a-z0-9]+$/i)?.[0] || "");
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
   return (
     <>
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
@@ -74,11 +83,23 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
           <div className="space-y-8 max-w-5xl mx-auto">
             {hymns.map((h, i) => (
               <div key={i} className="rounded-3xl border border-border bg-gradient-to-br from-card to-muted/20 overflow-hidden shadow-card">
-                <div className="flex items-center gap-3 px-7 py-5 bg-primary/5 border-b border-border">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                    <Music className="h-5 w-5 text-primary" />
+                <div className="flex items-center justify-between gap-3 px-7 py-5 bg-primary/5 border-b border-border">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                      <Music className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground truncate">{h.title}</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground">{h.title}</h3>
+                  {h.image && (
+                    <button
+                      type="button"
+                      onClick={() => downloadFile(h.image!, h.title)}
+                      className="flex shrink-0 items-center gap-1.5 rounded-full bg-background border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-primary hover:text-primary-foreground transition shadow-sm"
+                    >
+                      <Download className="h-3.5 w-3.5" />
+                      تنزيل
+                    </button>
+                  )}
                 </div>
                 {h.image && (
                   <button
@@ -136,7 +157,15 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
               <h3 className="text-3xl font-bold text-primary-foreground">{craft.title}</h3>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-card relative">
+              <button
+                type="button"
+                onClick={() => downloadFile(craft.image, craft.title)}
+                className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-full bg-background/95 backdrop-blur border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-primary hover:text-primary-foreground transition shadow-card"
+              >
+                <Download className="h-3.5 w-3.5" />
+                تنزيل
+              </button>
               <img src={craft.image} alt={craft.title} className="w-full rounded-xl object-contain max-h-[700px] mx-auto" />
             </div>
 
@@ -184,11 +213,21 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
           <div className="space-y-8 max-w-5xl mx-auto">
             {quizzes.map((q, i) => (
               <div key={i} className="rounded-3xl border border-border bg-gradient-to-br from-card to-muted/20 overflow-hidden shadow-card">
-                <div className="flex items-center gap-3 px-7 py-5 bg-accent/10 border-b border-border">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/20">
-                    <Trophy className="h-5 w-5 text-accent-foreground" />
+                <div className="flex items-center justify-between gap-3 px-7 py-5 bg-accent/10 border-b border-border">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/20">
+                      <Trophy className="h-5 w-5 text-accent-foreground" />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground truncate">{q.title}</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-foreground">{q.title}</h3>
+                  <button
+                    type="button"
+                    onClick={() => downloadFile(q.image, q.title)}
+                    className="flex shrink-0 items-center gap-1.5 rounded-full bg-background border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition shadow-sm"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    تنزيل
+                  </button>
                 </div>
                 <button
                   type="button"
