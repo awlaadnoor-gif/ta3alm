@@ -32,6 +32,7 @@ export interface Lesson {
     idea: string;
     image: string;
     images?: string[];
+    video?: string;
     tools: string[];
     steps: string[];
   };
