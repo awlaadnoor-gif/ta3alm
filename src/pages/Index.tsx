@@ -84,7 +84,7 @@ const Index = () => {
           </motion.div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {activeCurriculum.lessons.map((lesson, i) => (
+            {lessons.map((lesson, i) => (
               <LessonCard
                 key={lesson.id}
                 lessonId={lesson.id}
