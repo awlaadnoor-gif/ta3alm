@@ -183,6 +183,26 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
               </div>
             ))}
 
+            {craft.video && (
+              <div className="rounded-2xl border border-border bg-card p-4 shadow-card relative overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => downloadFile(craft.video!, `${craft.title} - فيديو`)}
+                  className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-full bg-background/95 backdrop-blur border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-primary hover:text-primary-foreground transition shadow-card"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  تنزيل الفيديو
+                </button>
+                <video
+                  src={craft.video}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full rounded-xl bg-black max-h-[700px] mx-auto"
+                />
+              </div>
+            )}
+
             <div className="rounded-2xl border-2 border-accent/30 bg-accent/5 p-7 shadow-card">
               <h4 className="text-xl font-bold mb-3 flex items-center gap-2">💡 فكرة النشاط</h4>
               <p className="text-base leading-[1.9] text-foreground/85">{craft.idea}</p>
