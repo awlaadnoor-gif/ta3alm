@@ -128,7 +128,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border bg-card py-8">
         <div className="container text-center text-sm text-muted-foreground">
-          <p className="text-base"><p className="text-base">مدارس الأحد — نلعب ونتعلم مع الله ✝️</p></p>
+          <p className="text-base">مدارس الأحد — نلعب ونتعلم عن الله ✝️</p>
         </div>
       </footer>
     </div>
