@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BookOpen, ChevronLeft, Sparkles } from "lucide-react";
 import Header from "@/components/Header";
@@ -8,6 +8,14 @@ import heroBg from "@/assets/curriculum-cover.jpg";
 
 const Index = () => {
   const activeCurriculum = getActiveCurriculum();
+  const [searchParams] = useSearchParams();
+  const dayParam = searchParams.get("day");
+  const dayNum = dayParam ? parseInt(dayParam, 10) : null;
+  const lessons = activeCurriculum
+    ? (dayNum && !isNaN(dayNum)
+        ? activeCurriculum.lessons.filter((l) => l.id === dayNum)
+        : activeCurriculum.lessons)
+    : [];
 
   return (
     <div className="min-h-screen bg-background">
