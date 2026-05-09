@@ -225,6 +225,7 @@ export const curricula: Curriculum[] = [
           title: "أدلة وجود الله",
           idea: "ورقة مطبوع بها نقاط أدلة وجود الله، ويقوم الطفل بقصها وعمل المروحة بحيث يكون كل ضلع يعبّر عن أحد أدلة وجود الله (الخليقة، كلمة الله، الضمير، العناية الإلهية).",
           image: "/crafts/craft-day1.webp",
+          images: ["/crafts/craft-day1.webp", "/crafts/sah-ghalat-day1.webp"],
           video: "/crafts/craft-day1.mp4",
           tools: ["مقص", "أقلام تلوين", "صمغ", "دبوس ورقي", "عصا في قاع المروحة"],
           steps: [
@@ -378,6 +379,7 @@ export const curricula: Curriculum[] = [
           title: "دائماً الله معي ♥",
           idea: "3 دوائر معلقة بالخيط لتعبر عن شعور الأطفال في يومهم وحقيقة موقف الله في هذه الظروف",
           image: "/crafts/craft-day2.webp",
+          images: ["/crafts/craft-day2.webp", "/crafts/sah-ghalat-day2.webp"],
           tools: ["ورق مقوى ملون", "مقص", "صمغ", "أقلام تلوين", "خيط"],
           steps: [
             "قص الورق المقوى على شكل دوائر",
@@ -467,7 +469,18 @@ export const curricula: Curriculum[] = [
         },
         hymns: [
           { title: "ترانيم اليوم الثالث (مش مهم)", image: "/hymns/hymns-day3.webp" }
-        ]
+        ],
+        craft: {
+          title: "صح وغلط - اليوم الثالث",
+          idea: "ورقة نشاط لمساعدة الأطفال على التمييز بين الأفكار الصحيحة والخاطئة عن الله من خلال درس اليوم.",
+          image: "/crafts/sah-ghalat-day3.webp",
+          tools: ["أقلام", "مقص", "صمغ"],
+          steps: [
+            "اطبع الورقة",
+            "اقرأ كل عبارة وحدد إن كانت صح أم غلط",
+            "لوّن وزيّن الورقة"
+          ]
+        }
       },
       {
         id: 4,
@@ -556,7 +569,18 @@ export const curricula: Curriculum[] = [
         },
         hymns: [
           { title: "ترانيم اليوم الرابع (مش قوي)", image: "/hymns/hymns-day4.webp" }
-        ]
+        ],
+        craft: {
+          title: "صح وغلط - اليوم الرابع",
+          idea: "ورقة نشاط لمساعدة الأطفال على التمييز بين الأفكار الصحيحة والخاطئة عن الله من خلال درس اليوم.",
+          image: "/crafts/sah-ghalat-day4.webp",
+          tools: ["أقلام", "مقص", "صمغ"],
+          steps: [
+            "اطبع الورقة",
+            "اقرأ كل عبارة وحدد إن كانت صح أم غلط",
+            "لوّن وزيّن الورقة"
+          ]
+        }
       },
       {
         id: 5,
@@ -709,6 +733,7 @@ export const curricula: Curriculum[] = [
           title: "الله موجود",
           idea: "نشاط جماعي ممتع يساعد الأطفال على تذكر صفات الله من خلال صنع خوافض اللسان الملونة وتعليقها كزينة تذكير يومي.",
           image: "/crafts/craft-day1.webp",
+          images: ["/crafts/craft-day1.webp", "/crafts/sah-ghalat-day5.webp"],
           tools: ["خوافض لسان", "ألوان", "شريط ستان", "مسدس شمع"],
           steps: [
             "اكتب عنوان اليوم على كل عود",
