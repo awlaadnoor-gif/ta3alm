@@ -14,6 +14,7 @@ interface Craft {
   title: string;
   idea: string;
   image: string;
+  images?: string[];
   tools: string[];
   steps: string[];
 }
@@ -157,17 +158,29 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
               <h3 className="text-3xl font-bold text-primary-foreground">{craft.title}</h3>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-card relative">
-              <button
-                type="button"
-                onClick={() => downloadFile(craft.image, craft.title)}
-                className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-full bg-background/95 backdrop-blur border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-primary hover:text-primary-foreground transition shadow-card"
-              >
-                <Download className="h-3.5 w-3.5" />
-                تنزيل
-              </button>
-              <img src={craft.image} alt={craft.title} className="w-full rounded-xl object-contain max-h-[700px] mx-auto" />
-            </div>
+            {(craft.images && craft.images.length > 0 ? craft.images : [craft.image]).map((img, idx) => (
+              <div key={idx} className="rounded-2xl border border-border bg-card p-6 shadow-card relative">
+                <button
+                  type="button"
+                  onClick={() => downloadFile(img, `${craft.title}${craft.images && craft.images.length > 1 ? ` - ${idx + 1}` : ""}`)}
+                  className="absolute top-4 left-4 z-10 flex items-center gap-1.5 rounded-full bg-background/95 backdrop-blur border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-primary hover:text-primary-foreground transition shadow-card"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  تنزيل
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setZoomImage({ src: img, title: craft.title })}
+                  className="group relative block w-full"
+                >
+                  <img src={img} alt={craft.title} className="w-full rounded-xl object-contain max-h-[700px] mx-auto" />
+                  <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-background/90 backdrop-blur px-3 py-1.5 text-xs font-medium text-foreground shadow-card opacity-80 group-hover:opacity-100 transition">
+                    <Maximize2 className="h-3.5 w-3.5" />
+                    تكبير
+                  </div>
+                </button>
+              </div>
+            ))}
 
             <div className="rounded-2xl border-2 border-accent/30 bg-accent/5 p-7 shadow-card">
               <h4 className="text-xl font-bold mb-3 flex items-center gap-2">💡 فكرة النشاط</h4>
