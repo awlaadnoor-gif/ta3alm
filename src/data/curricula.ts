@@ -219,6 +219,7 @@ export const curricula: Curriculum[] = [
           { title: "مسابقة اليوم الأول - صفحة 1", image: "/quizzes/quiz-day1-p1.webp" },
           { title: "مسابقة اليوم الأول - صفحة 2", image: "/quizzes/quiz-day1-p2.webp" },
           { title: "مسابقة اليوم الأول - صفحة 3", image: "/quizzes/quiz-day1-p3.webp" }
+        ]
       },
       {
         id: 2,
