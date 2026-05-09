@@ -15,6 +15,7 @@ interface Craft {
   idea: string;
   image: string;
   images?: string[];
+  video?: string;
   tools: string[];
   steps: string[];
 }
