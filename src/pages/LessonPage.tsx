@@ -108,7 +108,7 @@ const LessonPage = () => {
             return (
               <div key={i} className="flex items-start gap-3">
                 <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
-                <span className="text-base leading-relaxed text-foreground/85">{point}</span>
+                <span className="text-foreground/85">{point}</span>
               </div>
             );
           })}
@@ -174,13 +174,13 @@ const LessonPage = () => {
                 return (
                   <div key={i} className="flex items-start gap-3 pr-4">
                     <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
-                    <span className="text-base leading-[1.9] text-foreground/85 font-medium">{note.substring(1).trim()}</span>
+                    <span className="text-foreground/85 font-medium">{note.substring(1).trim()}</span>
                   </div>
                 );
               }
               // Regular paragraph
               return (
-                <p key={i} className="text-base leading-[1.9] text-foreground/80">
+                <p key={i} className="text-foreground/80">
                   {note}
                 </p>
               );
@@ -198,7 +198,7 @@ const LessonPage = () => {
               <div key={i} className="space-y-3">
                 <h4 className="font-bold text-base text-accent-foreground border-r-4 border-accent pr-3">{activity.title}</h4>
                 {activity.content.map((line, j) => (
-                  <p key={j} className="text-base leading-relaxed text-foreground/80 pr-6">
+                  <p key={j} className="text-foreground/80 pr-6">
                     {line}
                   </p>
                 ))}
@@ -257,13 +257,13 @@ const LessonPage = () => {
                   <h4 className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
                     {heading}
                   </h4>
-                  <p className="text-base leading-[2] text-foreground/85">{body}</p>
+                  <p className="text-foreground/85">{body}</p>
                 </div>
               );
             }
             
             return (
-              <p key={i} className="text-base leading-[2] text-foreground/85">
+              <p key={i} className="text-foreground/85">
                 {paragraph}
               </p>
             );
@@ -289,7 +289,7 @@ const LessonPage = () => {
                 return (
                   <div key={i} className="flex items-start gap-3 pr-4">
                     <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
-                    <span className="text-base leading-relaxed text-foreground/85 font-medium">{q}</span>
+                    <span className="text-foreground/85 font-medium">{q}</span>
                   </div>
                 );
               }
@@ -304,7 +304,7 @@ const LessonPage = () => {
               return (
                 <div key={i} className="flex items-start gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">{questionNumber}</span>
-                  <span className="text-base leading-relaxed text-foreground/85 pt-0.5">{q}</span>
+                  <span className="text-foreground/85 pt-0.5">{q}</span>
                 </div>
               );
             });
