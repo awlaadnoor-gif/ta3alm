@@ -98,18 +98,58 @@ const CurriculumSectionPage = () => {
   const { id, sectionKey } = useParams<{ id: string; sectionKey: string }>();
   const curriculum = getCurriculumById(id || "");
   const allSections = id ? curriculumSections[id] : undefined;
+  const navItems = allSections
+    ? sectionOrder.filter((k) => allSections[k])
+    : [];
+
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [activeKey, setActiveKey] = useState<string>(sectionKey || navItems[0] || "");
+  const [progress, setProgress] = useState(0);
 
   // Smooth-scroll to the requested section on mount/param change
   useEffect(() => {
     if (!sectionKey) return;
     const el = document.getElementById(`section-${sectionKey}`);
     if (el) {
-      // small delay so layout is ready
       setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 50);
     }
   }, [sectionKey]);
+
+  // Scroll-spy: detect active section based on viewport position
+  useEffect(() => {
+    if (navItems.length === 0) return;
+    const onScroll = () => {
+      // Progress bar: percentage of document scrolled
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      setProgress(pct);
+
+      // Active section: the one whose top is closest to the nav line (~140px from viewport top)
+      const probe = 160;
+      let current = navItems[0];
+      for (const key of navItems) {
+        const el = document.getElementById(`section-${key}`);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top - probe <= 0) {
+          current = key;
+        } else {
+          break;
+        }
+      }
+      setActiveKey((prev) => (prev === current ? prev : current));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [navItems.join("|")]);
 
   if (!curriculum || !allSections) {
     return (
@@ -124,9 +164,6 @@ const CurriculumSectionPage = () => {
       </div>
     );
   }
-
-  const navItems = sectionOrder.filter((k) => allSections[k]);
-  const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const handleNavClick = (e: React.MouseEvent, key: string) => {
     e.preventDefault();
