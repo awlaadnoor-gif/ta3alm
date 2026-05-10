@@ -1,10 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Theater, Music, FileText, Flag } from "lucide-react";
+import { ArrowRight, Theater, Music, FileText, Flag, Link2, Check } from "lucide-react";
 import Header from "@/components/Header";
 import { getCurriculumById } from "@/data/curricula";
 import { curriculumSections } from "@/data/curriculumSections";
+import { toast } from "sonner";
 
 const sectionIcons: Record<string, any> = {
   sketches: Theater,
