@@ -211,14 +211,14 @@ const CurriculumSectionPage = () => {
         </div>
       </section>
 
-      {/* Sticky in-page nav */}
+      {/* Sticky in-page nav with progress bar */}
       <nav className="sticky top-16 z-30 border-b border-border bg-background/85 backdrop-blur-md">
         <div className="container">
           <div className="flex gap-2 overflow-x-auto py-3 scrollbar-none">
             {navItems.map((key) => {
               const Icon = sectionIcons[key];
               const item = allSections[key];
-              const isActive = sectionKey === key;
+              const isActive = activeKey === key;
               return (
                 <a
                   key={key}
@@ -237,6 +237,12 @@ const CurriculumSectionPage = () => {
             })}
           </div>
         </div>
+        {/* Reading progress bar */}
+        <div
+          className="h-1 bg-primary transition-[width] duration-150 ease-out"
+          style={{ width: `${progress}%` }}
+          aria-hidden
+        />
       </nav>
 
       {/* All sections rendered on one page */}
