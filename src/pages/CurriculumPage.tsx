@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import LessonCard from "@/components/LessonCard";
 import { getCurriculumById } from "@/data/curricula";
 import { curriculumSections } from "@/data/curriculumSections";
+import { renderColoredMarks } from "@/lib/colorMarks";
 
 const SECTION_ICONS: Record<string, typeof Theater> = {
   sketches: Theater,

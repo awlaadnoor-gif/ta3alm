@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import LessonCard from "@/components/LessonCard";
 import { getActiveCurriculum } from "@/data/curricula";
 import heroBg from "@/assets/curriculum-cover.jpg";
+import { renderColoredMarks } from "@/lib/colorMarks";
 
 const Index = () => {
   const activeCurriculum = getActiveCurriculum();
