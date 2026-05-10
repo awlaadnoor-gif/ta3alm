@@ -325,7 +325,10 @@ const CurriculumSectionPage = () => {
                   </button>
                 </div>
 
-                <article className="rounded-2xl border border-border bg-card p-6 md:p-10 shadow-card">
+                <article
+                  className="rounded-2xl border border-border bg-card p-6 md:p-10 shadow-card"
+                  style={readingStyle}
+                >
                   <div className="space-y-5">
                     {item.paragraphs.map((p, i) => renderParagraph(p, i))}
                   </div>
