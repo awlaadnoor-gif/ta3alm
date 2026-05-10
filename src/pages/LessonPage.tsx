@@ -7,6 +7,8 @@ import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
 import SceneDisplay from "@/components/SceneDisplay";
 import BibleReferenceViewer from "@/components/BibleReferenceViewer";
+import ReadingPrefsBar from "@/components/ReadingPrefsBar";
+import { useReadingPrefs } from "@/hooks/useReadingPrefs";
 import { getCurriculumById } from "@/data/curricula";
 
 const lessonColors = [
