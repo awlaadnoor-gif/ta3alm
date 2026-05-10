@@ -48,6 +48,7 @@ export interface Curriculum {
   overview: string;
   lessons: Lesson[];
   isActive: boolean;
+  sections?: string[];
 }
 
 export const curricula: Curriculum[] = [
