@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, ArrowRight, Theater, Music, FileText, BookmarkCheck } from "lucide-react";
+import { ChevronLeft, ArrowRight, Theater, Music, FileText, BookmarkCheck, BookOpen, HelpCircle, Sparkles, Calendar } from "lucide-react";
 import Header from "@/components/Header";
 import LessonCard from "@/components/LessonCard";
 import { getCurriculumById } from "@/data/curricula";
