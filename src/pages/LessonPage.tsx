@@ -36,6 +36,7 @@ const LessonPage = () => {
   const { id, lessonId } = useParams<{ id: string; lessonId: string }>();
   const curriculum = getCurriculumById(id || "");
   const lesson = curriculum?.lessons.find((l) => l.id === Number(lessonId));
+  const { prefs, setPrefs, readingStyle } = useReadingPrefs();
 
   useEffect(() => {
     window.scrollTo(0, 0);
