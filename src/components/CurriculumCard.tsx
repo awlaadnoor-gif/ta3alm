@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BookOpen, ChevronLeft, Clock } from "lucide-react";
 import type { Curriculum } from "@/data/curricula";
+import { renderColoredMarks } from "@/lib/colorMarks";
 
 interface CurriculumCardProps {
   curriculum: Curriculum;
@@ -24,7 +25,7 @@ const CurriculumCard = ({ curriculum, index }: CurriculumCardProps) => {
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-2xl font-bold text-primary-foreground font-amiri">
-                {curriculum.title}
+                {renderColoredMarks(curriculum.title)}
               </h3>
               <span className="text-sm text-primary-foreground/80">{curriculum.year}</span>
             </div>

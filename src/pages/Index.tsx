@@ -49,7 +49,7 @@ const Index = () => {
                 to={`/curriculum/${activeCurriculum.id}`}
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-warm px-6 py-3 text-base font-semibold text-primary-foreground shadow-warm transition-all hover:shadow-lg hover:-translate-y-0.5"
               >
-                ابدأ المنهج الحالي: {activeCurriculum.title}
+                ابدأ المنهج الحالي: {renderColoredMarks(activeCurriculum.title)}
                 <ChevronLeft className="h-5 w-5" />
               </Link>
             )}
@@ -68,7 +68,7 @@ const Index = () => {
           >
             <div>
               <h2 className="text-3xl font-bold text-foreground">
-                {activeCurriculum.title} — دروس المنهج
+                {renderColoredMarks(activeCurriculum.title)} — دروس المنهج
               </h2>
               <p className="mt-2 text-muted-foreground">
                 أفكار خاطئة عن الله نصححها معاً

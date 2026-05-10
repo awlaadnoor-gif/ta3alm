@@ -55,7 +55,7 @@ const CurriculumPage = () => {
           >
             <div className="flex items-center gap-3 mb-2">
               <h1 className="text-4xl font-bold text-primary-foreground">
-                {curriculum.title}
+                {renderColoredMarks(curriculum.title)}
               </h1>
               <span className="rounded-full bg-background/20 px-3 py-1 text-sm text-primary-foreground backdrop-blur-sm">
                 {curriculum.year}
