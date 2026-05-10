@@ -117,6 +117,30 @@ const CurriculumSectionPage = () => {
   const [activeKey, setActiveKey] = useState<string>(sectionKey || navItems[0] || "");
   const [progress, setProgress] = useState(0);
 
+  // Reading preferences (font, line-height, font-size) — persisted in localStorage
+  const [prefs, setPrefs] = useState<ReadingPrefs>(() => {
+    if (typeof window === "undefined") return DEFAULT_PREFS;
+    try {
+      const raw = localStorage.getItem(PREFS_KEY);
+      if (!raw) return DEFAULT_PREFS;
+      return { ...DEFAULT_PREFS, ...JSON.parse(raw) };
+    } catch {
+      return DEFAULT_PREFS;
+    }
+  });
+  useEffect(() => {
+    try {
+      localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    } catch {}
+  }, [prefs]);
+  const fontStack =
+    FONT_OPTIONS.find((f) => f.key === prefs.font)?.stack || FONT_OPTIONS[0].stack;
+  const readingStyle: React.CSSProperties = {
+    fontFamily: fontStack,
+    fontSize: `${prefs.fontSize}px`,
+    lineHeight: prefs.lineHeight,
+  };
+
   // Smooth-scroll to the requested section on mount/param change
   useEffect(() => {
     if (!sectionKey) return;
