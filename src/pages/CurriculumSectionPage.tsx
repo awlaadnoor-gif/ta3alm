@@ -126,6 +126,7 @@ const CurriculumSectionPage = () => {
   }
 
   const navItems = sectionOrder.filter((k) => allSections[k]);
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const handleNavClick = (e: React.MouseEvent, key: string) => {
     e.preventDefault();
@@ -133,6 +134,18 @@ const CurriculumSectionPage = () => {
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
       window.history.replaceState(null, "", `/curriculum/${curriculum.id}/section/${key}`);
+    }
+  };
+
+  const handleCopyLink = async (key: string) => {
+    const url = `${window.location.origin}/curriculum/${curriculum.id}/section/${key}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedKey(key);
+      toast.success("تم نسخ رابط القسم");
+      setTimeout(() => setCopiedKey(null), 2000);
+    } catch {
+      toast.error("تعذّر النسخ");
     }
   };
 
