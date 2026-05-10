@@ -23,9 +23,10 @@ const CurriculumSectionPage = () => {
   const { id, sectionKey } = useParams<{ id: string; sectionKey: string }>();
   const curriculum = getCurriculumById(id || "");
   const allSections = id ? curriculumSections[id] : undefined;
-  const navItems = allSections
-    ? sectionOrder.filter((k) => allSections[k])
-    : [];
+  const allowed = curriculum?.sections && curriculum.sections.length > 0
+    ? curriculum.sections
+    : DEFAULT_ORDER;
+  const navItems = allSections ? allowed.filter((k) => allSections[k]) : [];
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [activeKey, setActiveKey] = useState<string>(sectionKey || navItems[0] || "");
