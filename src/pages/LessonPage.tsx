@@ -378,12 +378,20 @@ const LessonPage = () => {
               </div>
               <div>
                 <p className="text-base text-primary-foreground/70">اليوم {lesson.id}</p>
-                <h1 className="text-4xl font-bold text-primary-foreground mb-1">
-                  ❌ {lesson.wrongIdea}
-                </h1>
-                <p className="text-xl text-primary-foreground/70">
-                  ✅ {lesson.title}
-                </p>
+                {curriculum.id === "find-truth-2025" || !lesson.wrongIdea ? (
+                  <h1 className="text-4xl font-bold text-primary-foreground mb-1">
+                    {lesson.title}
+                  </h1>
+                ) : (
+                  <>
+                    <h1 className="text-4xl font-bold text-primary-foreground mb-1">
+                      ❌ {lesson.wrongIdea}
+                    </h1>
+                    <p className="text-xl text-primary-foreground/70">
+                      ✅ {lesson.title}
+                    </p>
+                  </>
+                )}
               </div>
             </div>
             <div className="mt-4 flex flex-wrap gap-3">
