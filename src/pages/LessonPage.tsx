@@ -336,35 +336,6 @@ const LessonPage = () => {
         )}
       </motion.div>
 
-      {/* Sketch (Find-Truth 2025: per-lesson episode) */}
-      {extras.sketch && (
-        <motion.div {...sectionAnim(0.55)} className="rounded-2xl border-2 border-violet-300/40 bg-violet-50/40 p-7 shadow-card">
-          <SectionHeader icon={Theater} emoji="🎭" title={extras.sketch.title} />
-          <div className="space-y-4">
-            {extras.sketch.paragraphs.map((p, i) => renderRichParagraph(p, i))}
-          </div>
-        </motion.div>
-      )}
-
-      {/* Hymn opportunity (Find-Truth 2025: per-lesson opportunity) */}
-      {extras.hymn && (
-        <motion.div {...sectionAnim(0.6)} className="rounded-2xl border-2 border-emerald-300/40 bg-emerald-50/40 p-7 shadow-card">
-          <SectionHeader icon={Music} emoji="🎵" title={extras.hymn.title} />
-          <div className="space-y-4">
-            {extras.hymn.paragraphs.map((p, i) => renderRichParagraph(p, i))}
-          </div>
-        </motion.div>
-      )}
-
-      {/* Daily bulletin (Find-Truth 2025: per-lesson bulletin) */}
-      {extras.bulletin && (
-        <motion.div {...sectionAnim(0.65)} className="rounded-2xl border-2 border-sky-300/40 bg-sky-50/40 p-7 shadow-card">
-          <SectionHeader icon={FileText} emoji="📰" title={extras.bulletin.title} />
-          <div className="space-y-4">
-            {extras.bulletin.paragraphs.map((p, i) => renderRichParagraph(p, i))}
-          </div>
-        </motion.div>
-      )}
 
       {/* Navigation */}
       <div className="flex items-center justify-between pt-6 gap-4">
