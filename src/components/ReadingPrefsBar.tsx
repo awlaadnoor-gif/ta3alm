@@ -1,5 +1,5 @@
 import { Minus, Plus, RotateCcw } from "lucide-react";
-import { DEFAULT_PREFS, FONT_OPTIONS, ReadingPrefs } from "@/hooks/useReadingPrefs";
+import { DEFAULT_PREFS, ReadingPrefs } from "@/hooks/useReadingPrefs";
 
 type Props = {
   prefs: ReadingPrefs;
@@ -13,25 +13,6 @@ const ReadingPrefsBar = ({ prefs, setPrefs, className = "" }: Props) => {
       dir="rtl"
       className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-foreground/70 ${className}`}
     >
-      <div className="flex items-center gap-1">
-        <span className="font-medium text-foreground/80">الخط:</span>
-        {FONT_OPTIONS.map((f) => (
-          <button
-            key={f.key}
-            type="button"
-            onClick={() => setPrefs((p) => ({ ...p, font: f.key }))}
-            style={{ fontFamily: f.stack }}
-            className={`rounded-full px-2.5 py-1 text-[12px] transition-colors ${
-              prefs.font === f.key
-                ? "bg-primary text-primary-foreground"
-                : "hover:bg-muted"
-            }`}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
-
       <div className="flex items-center gap-1">
         <span className="font-medium text-foreground/80">حجم النص:</span>
         <button
