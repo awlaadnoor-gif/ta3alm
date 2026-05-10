@@ -84,6 +84,7 @@
     direction: rtl;
     font-feature-settings: normal;
     -webkit-font-feature-settings: normal;
+    font-family: 'Baloo Bhaijaan 2', sans-serif;
   }
 
   body {
@@ -91,6 +92,20 @@
     font-family: 'Baloo Bhaijaan 2', sans-serif;
     font-size: 18px;
     line-height: 1.8;
+  }
+
+  /* Force Baloo Bhaijaan 2 across every element (including form controls
+     and any component that resets its own font-family) */
+  *,
+  *::before,
+  *::after,
+  button,
+  input,
+  select,
+  textarea,
+  optgroup,
+  [class*="font-"] {
+    font-family: 'Baloo Bhaijaan 2', sans-serif !important;
   }
 }
 
