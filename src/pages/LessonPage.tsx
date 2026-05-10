@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb, Theater } from "lucide-react";
+import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb, Theater, Music, FileText } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
@@ -10,6 +10,8 @@ import BibleReferenceViewer from "@/components/BibleReferenceViewer";
 import ReadingPrefsBar from "@/components/ReadingPrefsBar";
 import { useReadingPrefs } from "@/hooks/useReadingPrefs";
 import { getCurriculumById } from "@/data/curricula";
+import { getLessonExtras } from "@/lib/lessonExtras";
+import { renderRichParagraph } from "@/lib/renderRichParagraph";
 
 const lessonColors = [
   "from-amber-500 to-orange-600",
