@@ -16,12 +16,14 @@ export interface LessonExtras {
  * The match itself stays at the beginning of the corresponding segment.
  * Returns segments WITHOUT the leading intro (text before the first marker).
  */
-const splitAtMarkers = (text: string, marker: RegExp): string[] => {
+const splitAtMarkers = (text: string, marker: RegExp, minGap = 0): string[] => {
   const re = new RegExp(marker.source, marker.flags.includes("g") ? marker.flags : marker.flags + "g");
   const indices: number[] = [];
   let m: RegExpExecArray | null;
   while ((m = re.exec(text)) !== null) {
-    indices.push(m.index);
+    if (indices.length === 0 || m.index - indices[indices.length - 1] >= minGap) {
+      indices.push(m.index);
+    }
     if (m.index === re.lastIndex) re.lastIndex++;
   }
   const parts: string[] = [];
