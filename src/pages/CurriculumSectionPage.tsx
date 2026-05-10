@@ -1,11 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Theater, Music, FileText, Flag, Link2, Check, Minus, Plus, RotateCcw } from "lucide-react";
+import { ArrowRight, Theater, Music, FileText, Flag, Link2, Check } from "lucide-react";
 import Header from "@/components/Header";
 import { getCurriculumById } from "@/data/curricula";
 import { curriculumSections } from "@/data/curriculumSections";
 import { toast } from "sonner";
+import { useReadingPrefs } from "@/hooks/useReadingPrefs";
+import ReadingPrefsBar from "@/components/ReadingPrefsBar";
 
 const sectionIcons: Record<string, any> = {
   sketches: Theater,
@@ -15,17 +17,6 @@ const sectionIcons: Record<string, any> = {
 };
 
 const sectionOrder = ["sketches", "hymns", "bulletin", "conclusion"];
-
-const FONT_OPTIONS = [
-  { key: "tajawal", label: "Tajawal", stack: "'Tajawal', system-ui, sans-serif" },
-  { key: "cairo", label: "Cairo", stack: "'Cairo', system-ui, sans-serif" },
-  { key: "naskh", label: "نسخ", stack: "'Noto Naskh Arabic', serif" },
-  { key: "amiri", label: "Amiri", stack: "'Amiri', serif" },
-];
-
-const PREFS_KEY = "curriculum-reading-prefs-v1";
-type ReadingPrefs = { font: string; lineHeight: number; fontSize: number };
-const DEFAULT_PREFS: ReadingPrefs = { font: "tajawal", lineHeight: 2, fontSize: 17 };
 
 const SPEAKER_RE = /^([^:：،.!؟?\n]{1,30})\s*[:：]\s*(.+)$/s;
 const STAGE_RE = /^\(.+\)$/s;
@@ -118,28 +109,7 @@ const CurriculumSectionPage = () => {
   const [progress, setProgress] = useState(0);
 
   // Reading preferences (font, line-height, font-size) — persisted in localStorage
-  const [prefs, setPrefs] = useState<ReadingPrefs>(() => {
-    if (typeof window === "undefined") return DEFAULT_PREFS;
-    try {
-      const raw = localStorage.getItem(PREFS_KEY);
-      if (!raw) return DEFAULT_PREFS;
-      return { ...DEFAULT_PREFS, ...JSON.parse(raw) };
-    } catch {
-      return DEFAULT_PREFS;
-    }
-  });
-  useEffect(() => {
-    try {
-      localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
-    } catch {}
-  }, [prefs]);
-  const fontStack =
-    FONT_OPTIONS.find((f) => f.key === prefs.font)?.stack || FONT_OPTIONS[0].stack;
-  const readingStyle: React.CSSProperties = {
-    fontFamily: fontStack,
-    fontSize: `${prefs.fontSize}px`,
-    lineHeight: prefs.lineHeight,
-  };
+  const { prefs, setPrefs, readingStyle } = useReadingPrefs();
 
   // Smooth-scroll to the requested section on mount/param change
   useEffect(() => {
@@ -273,72 +243,11 @@ const CurriculumSectionPage = () => {
           </div>
 
           {/* Reading preferences */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border/60 py-2 text-xs text-foreground/70" dir="rtl">
-            <div className="flex items-center gap-1">
-              <span className="font-medium text-foreground/80">الخط:</span>
-              {FONT_OPTIONS.map((f) => (
-                <button
-                  key={f.key}
-                  type="button"
-                  onClick={() => setPrefs((p) => ({ ...p, font: f.key }))}
-                  style={{ fontFamily: f.stack }}
-                  className={`rounded-full px-2.5 py-1 text-[12px] transition-colors ${
-                    prefs.font === f.key
-                      ? "bg-primary text-primary-foreground"
-                      : "hover:bg-muted"
-                  }`}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-1">
-              <span className="font-medium text-foreground/80">حجم النص:</span>
-              <button
-                type="button"
-                aria-label="تصغير"
-                onClick={() => setPrefs((p) => ({ ...p, fontSize: Math.max(13, p.fontSize - 1) }))}
-                className="flex h-7 w-7 items-center justify-center rounded-full hover:bg-muted"
-              >
-                <Minus className="h-3.5 w-3.5" />
-              </button>
-              <span className="w-8 text-center tabular-nums">{prefs.fontSize}</span>
-              <button
-                type="button"
-                aria-label="تكبير"
-                onClick={() => setPrefs((p) => ({ ...p, fontSize: Math.min(24, p.fontSize + 1) }))}
-                className="flex h-7 w-7 items-center justify-center rounded-full hover:bg-muted"
-              >
-                <Plus className="h-3.5 w-3.5" />
-              </button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="font-medium text-foreground/80">تباعد الأسطر:</span>
-              <input
-                type="range"
-                min={1.4}
-                max={2.6}
-                step={0.1}
-                value={prefs.lineHeight}
-                onChange={(e) => setPrefs((p) => ({ ...p, lineHeight: Number(e.target.value) }))}
-                className="h-1 w-28 cursor-pointer accent-primary"
-                aria-label="تباعد الأسطر"
-              />
-              <span className="w-8 text-center tabular-nums">{prefs.lineHeight.toFixed(1)}</span>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setPrefs(DEFAULT_PREFS)}
-              className="ms-auto inline-flex items-center gap-1 rounded-full px-2.5 py-1 hover:bg-muted"
-              title="إعادة الضبط"
-            >
-              <RotateCcw className="h-3.5 w-3.5" />
-              إعادة الضبط
-            </button>
-          </div>
+          <ReadingPrefsBar
+            prefs={prefs}
+            setPrefs={setPrefs}
+            className="border-t border-border/60 py-2"
+          />
         </div>
         {/* Reading progress bar */}
         <div

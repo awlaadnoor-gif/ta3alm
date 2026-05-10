@@ -7,6 +7,8 @@ import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
 import SceneDisplay from "@/components/SceneDisplay";
 import BibleReferenceViewer from "@/components/BibleReferenceViewer";
+import ReadingPrefsBar from "@/components/ReadingPrefsBar";
+import { useReadingPrefs } from "@/hooks/useReadingPrefs";
 import { getCurriculumById } from "@/data/curricula";
 
 const lessonColors = [
@@ -34,6 +36,7 @@ const LessonPage = () => {
   const { id, lessonId } = useParams<{ id: string; lessonId: string }>();
   const curriculum = getCurriculumById(id || "");
   const lesson = curriculum?.lessons.find((l) => l.id === Number(lessonId));
+  const { prefs, setPrefs, readingStyle } = useReadingPrefs();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -75,7 +78,12 @@ const LessonPage = () => {
   };
 
   const lessonContent = (
-    <div className="space-y-10 max-w-4xl mx-auto">
+    <div className="space-y-10 max-w-4xl mx-auto" style={readingStyle}>
+      {/* Reading preferences (font / size / line-spacing) */}
+      <div className="rounded-2xl border border-border bg-card/60 px-4 py-3 shadow-sm">
+        <ReadingPrefsBar prefs={prefs} setPrefs={setPrefs} />
+      </div>
+
       {/* Objective */}
       <motion.div {...sectionAnim(0.1)} className="rounded-2xl border-2 border-primary/20 bg-primary/5 p-7 shadow-card">
         <SectionHeader icon={Target} emoji="🎯" title="الهدف" />
@@ -100,7 +108,7 @@ const LessonPage = () => {
             return (
               <div key={i} className="flex items-start gap-3">
                 <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
-                <span className="text-base leading-relaxed text-foreground/85">{point}</span>
+                <span className="text-foreground/85">{point}</span>
               </div>
             );
           })}
@@ -166,13 +174,13 @@ const LessonPage = () => {
                 return (
                   <div key={i} className="flex items-start gap-3 pr-4">
                     <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
-                    <span className="text-base leading-[1.9] text-foreground/85 font-medium">{note.substring(1).trim()}</span>
+                    <span className="text-foreground/85 font-medium">{note.substring(1).trim()}</span>
                   </div>
                 );
               }
               // Regular paragraph
               return (
-                <p key={i} className="text-base leading-[1.9] text-foreground/80">
+                <p key={i} className="text-foreground/80">
                   {note}
                 </p>
               );
@@ -190,7 +198,7 @@ const LessonPage = () => {
               <div key={i} className="space-y-3">
                 <h4 className="font-bold text-base text-accent-foreground border-r-4 border-accent pr-3">{activity.title}</h4>
                 {activity.content.map((line, j) => (
-                  <p key={j} className="text-base leading-relaxed text-foreground/80 pr-6">
+                  <p key={j} className="text-foreground/80 pr-6">
                     {line}
                   </p>
                 ))}
@@ -249,13 +257,13 @@ const LessonPage = () => {
                   <h4 className="text-lg font-bold text-primary border-r-4 border-primary pr-3 pt-4">
                     {heading}
                   </h4>
-                  <p className="text-base leading-[2] text-foreground/85">{body}</p>
+                  <p className="text-foreground/85">{body}</p>
                 </div>
               );
             }
             
             return (
-              <p key={i} className="text-base leading-[2] text-foreground/85">
+              <p key={i} className="text-foreground/85">
                 {paragraph}
               </p>
             );
@@ -281,7 +289,7 @@ const LessonPage = () => {
                 return (
                   <div key={i} className="flex items-start gap-3 pr-4">
                     <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-primary/70" />
-                    <span className="text-base leading-relaxed text-foreground/85 font-medium">{q}</span>
+                    <span className="text-foreground/85 font-medium">{q}</span>
                   </div>
                 );
               }
@@ -296,7 +304,7 @@ const LessonPage = () => {
               return (
                 <div key={i} className="flex items-start gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">{questionNumber}</span>
-                  <span className="text-base leading-relaxed text-foreground/85 pt-0.5">{q}</span>
+                  <span className="text-foreground/85 pt-0.5">{q}</span>
                 </div>
               );
             });
