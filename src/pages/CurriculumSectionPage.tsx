@@ -231,7 +231,7 @@ const CurriculumSectionPage = () => {
                   style={readingStyle}
                 >
                   <div className="space-y-5">
-                    {item.paragraphs.map((p, i) => renderParagraph(p, i))}
+                    {item.paragraphs.map((p, i) => renderRichParagraph(p, i))}
                   </div>
                 </article>
               </div>
