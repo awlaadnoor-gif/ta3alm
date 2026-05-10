@@ -57,7 +57,7 @@ const buildFindTruth2025 = (): Record<number, LessonExtras> => {
   // ---- Sketches: 4 episodes (Bible) + 4 episodes (God) = 8 ----
   const sketchAll = sections.sketches?.paragraphs.join("\n\n") ?? "";
   const sketchMarker = /الحلقة\s+(?:الأولى|الأولي|الثانية|الثلاثة|الثالثة|الرابعة)/;
-  const sketchParts = splitAtMarkers(sketchAll, sketchMarker);
+  const sketchParts = splitAtMarkers(sketchAll, sketchMarker, 1500);
 
   // ---- Bulletin: 8 days ----
   const bulletinAll = sections.bulletin?.paragraphs.join("\n\n") ?? "";
