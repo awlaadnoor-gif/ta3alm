@@ -1,4 +1,5 @@
-import { useParams, Link, NavLink } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Theater, Music, FileText, Flag } from "lucide-react";
 import Header from "@/components/Header";
@@ -14,16 +15,13 @@ const sectionIcons: Record<string, any> = {
 
 const sectionOrder = ["sketches", "hymns", "bulletin", "conclusion"];
 
-// Detect a "speaker: dialogue" line. Speaker is short (1-30 chars), no internal colon.
 const SPEAKER_RE = /^([^:：،.!؟?\n]{1,30})\s*[:：]\s*(.+)$/s;
-// Stage direction: entire paragraph wrapped in parens
 const STAGE_RE = /^\(.+\)$/s;
 
 const renderParagraph = (raw: string, i: number) => {
   const p = raw.trim();
   if (!p) return null;
 
-  // Bullet
   if (p.startsWith("•")) {
     return (
       <div key={i} className="flex items-start gap-3 pr-2">
@@ -35,7 +33,6 @@ const renderParagraph = (raw: string, i: number) => {
     );
   }
 
-  // Numbered list (1. ...)
   const numMatch = p.match(/^(\d{1,2})\.\s+(.+)$/s);
   if (numMatch) {
     return (
@@ -50,34 +47,28 @@ const renderParagraph = (raw: string, i: number) => {
     );
   }
 
-  // Stage direction (parens-only)
   if (STAGE_RE.test(p)) {
     return (
       <p
         key={i}
-        className="text-sm italic text-muted-foreground text-center bg-muted/30 rounded-lg px-4 py-2 mx-4"
+        className="text-sm italic text-muted-foreground text-center bg-muted/30 rounded-lg px-4 py-2 mx-2"
       >
         {p}
       </p>
     );
   }
 
-  // Heading (short + ends with ":" + no speaker dialogue after)
-  if (p.endsWith(":") && p.length < 80 && !/\s/.test(p.split(":")[0]) === false) {
-    // headings often have spaces; allow them
-  }
   if (p.endsWith(":") && p.length < 80) {
     return (
       <h3
         key={i}
-        className="text-xl font-bold text-primary border-r-4 border-primary pr-4 pt-4 pb-1"
+        className="text-xl font-bold text-primary border-r-4 border-primary pr-4 pt-4 pb-1 mt-2"
       >
         {p.replace(/:$/, "")}
       </h3>
     );
   }
 
-  // Speaker dialogue: "اسم: نص"
   const sp = p.match(SPEAKER_RE);
   if (sp && sp[1].split(/\s+/).length <= 4 && sp[2].length > 0) {
     return (
@@ -92,7 +83,6 @@ const renderParagraph = (raw: string, i: number) => {
     );
   }
 
-  // Default paragraph
   return (
     <p
       key={i}
@@ -107,9 +97,20 @@ const CurriculumSectionPage = () => {
   const { id, sectionKey } = useParams<{ id: string; sectionKey: string }>();
   const curriculum = getCurriculumById(id || "");
   const allSections = id ? curriculumSections[id] : undefined;
-  const section = sectionKey && allSections ? allSections[sectionKey] : undefined;
 
-  if (!curriculum || !section || !allSections) {
+  // Smooth-scroll to the requested section on mount/param change
+  useEffect(() => {
+    if (!sectionKey) return;
+    const el = document.getElementById(`section-${sectionKey}`);
+    if (el) {
+      // small delay so layout is ready
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+    }
+  }, [sectionKey]);
+
+  if (!curriculum || !allSections) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
@@ -125,8 +126,17 @@ const CurriculumSectionPage = () => {
 
   const navItems = sectionOrder.filter((k) => allSections[k]);
 
+  const handleNavClick = (e: React.MouseEvent, key: string) => {
+    e.preventDefault();
+    const el = document.getElementById(`section-${key}`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", `/curriculum/${curriculum.id}/section/${key}`);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" style={{ scrollBehavior: "smooth" }}>
       <Header />
 
       {/* Hero */}
@@ -141,51 +151,79 @@ const CurriculumSectionPage = () => {
           </Link>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="text-3xl md:text-4xl font-bold text-primary-foreground">
-              {section.title}
+              أقسام المنهج
             </h1>
             <p className="mt-2 max-w-2xl text-primary-foreground/85 leading-relaxed">
-              {section.description}
+              تنقّل بين الاسكتشات وفرص الترانيم والنشرة اليومية والخاتمة
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Sticky section nav */}
+      {/* Sticky in-page nav */}
       <nav className="sticky top-16 z-30 border-b border-border bg-background/85 backdrop-blur-md">
         <div className="container">
-          <div className="flex gap-1 overflow-x-auto py-2 scrollbar-none">
+          <div className="flex gap-2 overflow-x-auto py-3 scrollbar-none">
             {navItems.map((key) => {
               const Icon = sectionIcons[key];
               const item = allSections[key];
+              const isActive = sectionKey === key;
               return (
-                <NavLink
+                <a
                   key={key}
-                  to={`/curriculum/${curriculum.id}/section/${key}`}
-                  className={({ isActive }) =>
-                    `flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                      isActive
-                        ? "bg-primary text-primary-foreground shadow-warm"
-                        : "text-foreground/70 hover:bg-muted hover:text-foreground"
-                    }`
-                  }
+                  href={`#section-${key}`}
+                  onClick={(e) => handleNavClick(e, key)}
+                  className={`flex shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                    isActive
+                      ? "bg-primary text-primary-foreground shadow-warm"
+                      : "text-foreground/70 hover:bg-muted hover:text-foreground"
+                  }`}
                 >
                   {Icon && <Icon className="h-4 w-4" />}
                   {item.title}
-                </NavLink>
+                </a>
               );
             })}
           </div>
         </div>
       </nav>
 
-      {/* Content */}
-      <section className="container py-10" dir="rtl">
-        <article className="mx-auto max-w-3xl rounded-2xl border border-border bg-card p-6 md:p-10 shadow-card">
-          <div className="space-y-5">
-            {section.paragraphs.map((p, i) => renderParagraph(p, i))}
-          </div>
-        </article>
-      </section>
+      {/* All sections rendered on one page */}
+      <div className="container py-10 space-y-12" dir="rtl">
+        {navItems.map((key) => {
+          const item = allSections[key];
+          const Icon = sectionIcons[key];
+          return (
+            <section
+              key={key}
+              id={`section-${key}`}
+              className="scroll-mt-32"
+            >
+              <div className="mx-auto max-w-3xl">
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
+                    {Icon && <Icon className="h-6 w-6 text-primary" />}
+                  </div>
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                      {item.title}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+
+                <article className="rounded-2xl border border-border bg-card p-6 md:p-10 shadow-card">
+                  <div className="space-y-5">
+                    {item.paragraphs.map((p, i) => renderParagraph(p, i))}
+                  </div>
+                </article>
+              </div>
+            </section>
+          );
+        })}
+      </div>
     </div>
   );
 };
