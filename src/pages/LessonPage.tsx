@@ -78,7 +78,12 @@ const LessonPage = () => {
   };
 
   const lessonContent = (
-    <div className="space-y-10 max-w-4xl mx-auto">
+    <div className="space-y-10 max-w-4xl mx-auto" style={readingStyle}>
+      {/* Reading preferences (font / size / line-spacing) */}
+      <div className="rounded-2xl border border-border bg-card/60 px-4 py-3 shadow-sm">
+        <ReadingPrefsBar prefs={prefs} setPrefs={setPrefs} />
+      </div>
+
       {/* Objective */}
       <motion.div {...sectionAnim(0.1)} className="rounded-2xl border-2 border-primary/20 bg-primary/5 p-7 shadow-card">
         <SectionHeader icon={Target} emoji="🎯" title="الهدف" />
