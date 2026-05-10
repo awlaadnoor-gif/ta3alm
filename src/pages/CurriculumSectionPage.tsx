@@ -38,7 +38,7 @@ const renderParagraph = (raw: string, i: number) => {
     return (
       <div key={i} className="flex items-start gap-3 pr-2">
         <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary/70" />
-        <p className="text-[16px] leading-[2] text-foreground/85 flex-1">
+        <p className="text-foreground/85 flex-1">
           {p.replace(/^•\s*/, "")}
         </p>
       </div>
@@ -52,7 +52,7 @@ const renderParagraph = (raw: string, i: number) => {
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
           {numMatch[1]}
         </span>
-        <p className="text-[16px] leading-[2] text-foreground/85 flex-1 pt-0.5">
+        <p className="text-foreground/85 flex-1 pt-0.5">
           {numMatch[2]}
         </p>
       </div>
@@ -88,7 +88,7 @@ const renderParagraph = (raw: string, i: number) => {
         <span className="shrink-0 rounded-lg border border-accent/40 bg-accent/10 px-2.5 py-1 text-xs font-bold text-accent-foreground">
           {sp[1].trim()}
         </span>
-        <p className="text-[16px] leading-[2] text-foreground/85 flex-1 pt-0.5 whitespace-pre-line">
+        <p className="text-foreground/85 flex-1 pt-0.5 whitespace-pre-line">
           {sp[2].trim()}
         </p>
       </div>
@@ -98,7 +98,7 @@ const renderParagraph = (raw: string, i: number) => {
   return (
     <p
       key={i}
-      className="text-[16px] leading-[2] text-foreground/85 whitespace-pre-line"
+      className="text-foreground/85 whitespace-pre-line"
     >
       {p}
     </p>
