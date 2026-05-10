@@ -757,7 +757,7 @@ export const curricula: Curriculum[] = [
 
 ينقسم المنهج إلى 8 أيام: 4 دروس عن الكتاب المقدس (وحيه، أدلته، وصوله إلينا، استحالة تحريفه) و4 دروس عن الله (وحدانيته، الآب، الابن، الروح القدس).`,
  isActive: false,
- sections: ["sketches", "hymns", "bulletin", "conclusion"],
+ sections: ["conclusion"],
  lessons: [
  {
  id: 1,

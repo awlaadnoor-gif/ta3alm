@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb, Theater } from "lucide-react";
+import { ArrowRight, BookOpen, Target, MessageCircle, Heart, ChevronLeft, ChevronRight, Lightbulb, Theater, Music, FileText } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 import Header from "@/components/Header";
 import SectionTabs from "@/components/SectionTabs";
@@ -10,6 +10,8 @@ import BibleReferenceViewer from "@/components/BibleReferenceViewer";
 import ReadingPrefsBar from "@/components/ReadingPrefsBar";
 import { useReadingPrefs } from "@/hooks/useReadingPrefs";
 import { getCurriculumById } from "@/data/curricula";
+import { getLessonExtras } from "@/lib/lessonExtras";
+import { renderRichParagraph } from "@/lib/renderRichParagraph";
 
 const lessonColors = [
   "from-amber-500 to-orange-600",
@@ -37,6 +39,7 @@ const LessonPage = () => {
   const curriculum = getCurriculumById(id || "");
   const lesson = curriculum?.lessons.find((l) => l.id === Number(lessonId));
   const { prefs, setPrefs, readingStyle } = useReadingPrefs();
+  const extras = curriculum && lesson ? getLessonExtras(curriculum.id, lesson.id) : {};
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -332,6 +335,36 @@ const LessonPage = () => {
           </div>
         )}
       </motion.div>
+
+      {/* Sketch (Find-Truth 2025: per-lesson episode) */}
+      {extras.sketch && (
+        <motion.div {...sectionAnim(0.55)} className="rounded-2xl border-2 border-violet-300/40 bg-violet-50/40 p-7 shadow-card">
+          <SectionHeader icon={Theater} emoji="🎭" title={extras.sketch.title} />
+          <div className="space-y-4">
+            {extras.sketch.paragraphs.map((p, i) => renderRichParagraph(p, i))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Hymn opportunity (Find-Truth 2025: per-lesson opportunity) */}
+      {extras.hymn && (
+        <motion.div {...sectionAnim(0.6)} className="rounded-2xl border-2 border-emerald-300/40 bg-emerald-50/40 p-7 shadow-card">
+          <SectionHeader icon={Music} emoji="🎵" title={extras.hymn.title} />
+          <div className="space-y-4">
+            {extras.hymn.paragraphs.map((p, i) => renderRichParagraph(p, i))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Daily bulletin (Find-Truth 2025: per-lesson bulletin) */}
+      {extras.bulletin && (
+        <motion.div {...sectionAnim(0.65)} className="rounded-2xl border-2 border-sky-300/40 bg-sky-50/40 p-7 shadow-card">
+          <SectionHeader icon={FileText} emoji="📰" title={extras.bulletin.title} />
+          <div className="space-y-4">
+            {extras.bulletin.paragraphs.map((p, i) => renderRichParagraph(p, i))}
+          </div>
+        </motion.div>
+      )}
 
       {/* Navigation */}
       <div className="flex items-center justify-between pt-6 gap-4">
