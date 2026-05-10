@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.tsx";
 import CurriculumPage from "./pages/CurriculumPage.tsx";
 import LessonPage from "./pages/LessonPage.tsx";
 import CurriculaList from "./pages/CurriculaList.tsx";
+import CurriculumSectionPage from "./pages/CurriculumSectionPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/curricula" element={<CurriculaList />} />
           <Route path="/curriculum/:id" element={<CurriculumPage />} />
+          <Route path="/curriculum/:id/section/:sectionKey" element={<CurriculumSectionPage />} />
           <Route path="/curriculum/:id/lesson/:lessonId" element={<LessonPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
