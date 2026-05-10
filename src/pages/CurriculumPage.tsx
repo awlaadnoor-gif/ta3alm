@@ -1,9 +1,24 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, ArrowRight } from "lucide-react";
+import { ChevronLeft, ArrowRight, Theater, Music, FileText, BookmarkCheck } from "lucide-react";
 import Header from "@/components/Header";
 import LessonCard from "@/components/LessonCard";
 import { getCurriculumById } from "@/data/curricula";
+import { curriculumSections } from "@/data/curriculumSections";
+
+const SECTION_ICONS: Record<string, typeof Theater> = {
+  sketches: Theater,
+  hymns: Music,
+  bulletin: FileText,
+  conclusion: BookmarkCheck,
+};
+
+const SECTION_GRADIENTS: Record<string, string> = {
+  sketches: "from-fuchsia-500 to-purple-600",
+  hymns: "from-amber-500 to-rose-500",
+  bulletin: "from-sky-500 to-cyan-600",
+  conclusion: "from-emerald-500 to-teal-600",
+};
 
 const CurriculumPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -158,6 +173,48 @@ const CurriculumPage = () => {
           ))}
         </div>
       </section>
+
+      {/* Extra Sections (sketches, hymns, bulletin, conclusion) */}
+      {curriculum.sections && curriculum.sections.length > 0 && (
+        <section className="container pb-20">
+          <h2 className="mb-6 text-2xl font-bold text-foreground">أقسام إضافية</h2>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {curriculum.sections.map((key, i) => {
+              const sec = curriculumSections[curriculum.id]?.[key];
+              if (!sec) return null;
+              const Icon = SECTION_ICONS[key] ?? FileText;
+              const gradient = SECTION_GRADIENTS[key] ?? "from-primary to-accent";
+              return (
+                <motion.div
+                  key={key}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                >
+                  <Link
+                    to={`/curriculum/${curriculum.id}/section/${key}`}
+                    className="group block h-full overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-all duration-300 hover:shadow-warm hover:-translate-y-1"
+                  >
+                    <div className={`bg-gradient-to-l ${gradient} p-5`}>
+                      <div className="flex items-center justify-between">
+                        <Icon className="h-8 w-8 text-primary-foreground" />
+                        <ChevronLeft className="h-5 w-5 text-primary-foreground/80 transition-transform group-hover:-translate-x-1" />
+                      </div>
+                      <h3 className="mt-3 text-xl font-bold text-primary-foreground">{sec.title}</h3>
+                    </div>
+                    <div className="p-5">
+                      <p className="text-sm leading-[1.9] text-muted-foreground line-clamp-3">
+                        {sec.description}
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 };
