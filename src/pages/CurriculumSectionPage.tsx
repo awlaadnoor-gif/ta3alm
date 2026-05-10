@@ -1,11 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Theater, Music, FileText, Flag, Link2, Check, Minus, Plus, RotateCcw } from "lucide-react";
+import { ArrowRight, Theater, Music, FileText, Flag, Link2, Check } from "lucide-react";
 import Header from "@/components/Header";
 import { getCurriculumById } from "@/data/curricula";
 import { curriculumSections } from "@/data/curriculumSections";
 import { toast } from "sonner";
+import { useReadingPrefs } from "@/hooks/useReadingPrefs";
+import ReadingPrefsBar from "@/components/ReadingPrefsBar";
 
 const sectionIcons: Record<string, any> = {
   sketches: Theater,
@@ -15,17 +17,6 @@ const sectionIcons: Record<string, any> = {
 };
 
 const sectionOrder = ["sketches", "hymns", "bulletin", "conclusion"];
-
-const FONT_OPTIONS = [
-  { key: "tajawal", label: "Tajawal", stack: "'Tajawal', system-ui, sans-serif" },
-  { key: "cairo", label: "Cairo", stack: "'Cairo', system-ui, sans-serif" },
-  { key: "naskh", label: "نسخ", stack: "'Noto Naskh Arabic', serif" },
-  { key: "amiri", label: "Amiri", stack: "'Amiri', serif" },
-];
-
-const PREFS_KEY = "curriculum-reading-prefs-v1";
-type ReadingPrefs = { font: string; lineHeight: number; fontSize: number };
-const DEFAULT_PREFS: ReadingPrefs = { font: "tajawal", lineHeight: 2, fontSize: 17 };
 
 const SPEAKER_RE = /^([^:：،.!؟?\n]{1,30})\s*[:：]\s*(.+)$/s;
 const STAGE_RE = /^\(.+\)$/s;
