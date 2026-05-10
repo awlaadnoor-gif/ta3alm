@@ -218,7 +218,7 @@ const CurriculumSectionPage = () => {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
                     {Icon && <Icon className="h-6 w-6 text-primary" />}
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h2 className="text-2xl md:text-3xl font-bold text-foreground">
                       {item.title}
                     </h2>
@@ -226,6 +226,25 @@ const CurriculumSectionPage = () => {
                       {item.description}
                     </p>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => handleCopyLink(key)}
+                    aria-label="نسخ رابط القسم"
+                    title="نسخ رابط القسم"
+                    className="flex shrink-0 items-center gap-2 rounded-full border border-border bg-background px-3 py-2 text-sm font-medium text-foreground/80 transition-all hover:bg-muted hover:text-foreground hover:shadow-card"
+                  >
+                    {copiedKey === key ? (
+                      <>
+                        <Check className="h-4 w-4 text-green-600" />
+                        <span className="hidden sm:inline">تم النسخ</span>
+                      </>
+                    ) : (
+                      <>
+                        <Link2 className="h-4 w-4" />
+                        <span className="hidden sm:inline">نسخ الرابط</span>
+                      </>
+                    )}
+                  </button>
                 </div>
 
                 <article className="rounded-2xl border border-border bg-card p-6 md:p-10 shadow-card">
