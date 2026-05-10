@@ -39,6 +39,7 @@ const LessonPage = () => {
   const curriculum = getCurriculumById(id || "");
   const lesson = curriculum?.lessons.find((l) => l.id === Number(lessonId));
   const { prefs, setPrefs, readingStyle } = useReadingPrefs();
+  const extras = curriculum && lesson ? getLessonExtras(curriculum.id, lesson.id) : {};
 
   useEffect(() => {
     window.scrollTo(0, 0);
