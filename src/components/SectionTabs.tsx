@@ -1,8 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { BookOpen, Music, Video, Scissors, Trophy, Maximize2, Download } from "lucide-react";
+import { BookOpen, Music, Video, Scissors, Trophy, Maximize2, Download, Theater, FileText } from "lucide-react";
 import { useState } from "react";
 import VideoPlayer from "@/components/VideoPlayer";
+import { renderRichParagraph } from "@/lib/renderRichParagraph";
+import type { LessonExtra } from "@/lib/lessonExtras";
 
 interface Video {
   title: string;
@@ -37,9 +39,21 @@ interface SectionTabsProps {
   craft?: Craft;
   hymns?: Hymn[];
   quizzes?: Quiz[];
+  extraHymn?: LessonExtra;
+  extraSketch?: LessonExtra;
+  extraBulletin?: LessonExtra;
 }
 
-const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = [] }: SectionTabsProps) => {
+const SectionTabs = ({
+  lessonContent,
+  videos = [],
+  craft,
+  hymns = [],
+  quizzes = [],
+  extraHymn,
+  extraSketch,
+  extraBulletin,
+}: SectionTabsProps) => {
   const [zoomImage, setZoomImage] = useState<{ src: string; title: string } | null>(null);
 
   const downloadFile = (src: string, name: string) => {
@@ -50,10 +64,19 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
     a.click();
     a.remove();
   };
+
+  // When sketch extra is provided, replace the "crafts" tab with a sketch tab.
+  const showSketchInsteadOfCrafts = !!extraSketch;
+  const showBulletin = !!extraBulletin;
+
+  // Compute responsive grid columns based on visible tabs
+  const tabCount = 4 + (showBulletin ? 1 : 0); // lesson, hymns, videos, crafts/sketch (+ optional bulletin)
+  const gridColsClass = tabCount === 5 ? "grid-cols-5" : "grid-cols-4";
+
   return (
     <>
     <Tabs defaultValue="lesson" dir="rtl" className="w-full">
-      <TabsList className="grid w-full grid-cols-5 bg-muted/50 rounded-xl p-1 h-auto">
+      <TabsList className={`grid w-full ${gridColsClass} bg-muted/50 rounded-xl p-1 h-auto`}>
         <TabsTrigger value="lesson" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
           <BookOpen className="h-4 w-4" />
           <span className="hidden sm:inline">الدرس</span>
@@ -66,14 +89,28 @@ const SectionTabs = ({ lessonContent, videos = [], craft, hymns = [], quizzes = 
           <Video className="h-4 w-4" />
           <span className="hidden sm:inline">فيديوهات</span>
         </TabsTrigger>
-        <TabsTrigger value="crafts" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
-          <Scissors className="h-4 w-4" />
-          <span className="hidden sm:inline">أشغال</span>
-        </TabsTrigger>
-        <TabsTrigger value="quizzes" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
-          <Trophy className="h-4 w-4" />
-          <span className="hidden sm:inline">مسابقات</span>
-        </TabsTrigger>
+        {showSketchInsteadOfCrafts ? (
+          <TabsTrigger value="sketch" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
+            <Theater className="h-4 w-4" />
+            <span className="hidden sm:inline">الاسكتش</span>
+          </TabsTrigger>
+        ) : (
+          <TabsTrigger value="crafts" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
+            <Scissors className="h-4 w-4" />
+            <span className="hidden sm:inline">أشغال</span>
+          </TabsTrigger>
+        )}
+        {showBulletin ? (
+          <TabsTrigger value="bulletin" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
+            <FileText className="h-4 w-4" />
+            <span className="hidden sm:inline">النشرة</span>
+          </TabsTrigger>
+        ) : (
+          <TabsTrigger value="quizzes" className="flex items-center gap-2 py-3 rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-card">
+            <Trophy className="h-4 w-4" />
+            <span className="hidden sm:inline">مسابقات</span>
+          </TabsTrigger>
+        )}
       </TabsList>
 
       <TabsContent value="lesson" className="mt-6">
