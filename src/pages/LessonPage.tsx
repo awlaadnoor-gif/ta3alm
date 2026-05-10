@@ -11,7 +11,7 @@ import ReadingPrefsBar from "@/components/ReadingPrefsBar";
 import { useReadingPrefs } from "@/hooks/useReadingPrefs";
 import { getCurriculumById } from "@/data/curricula";
 import { getLessonExtras } from "@/lib/lessonExtras";
-import { renderRichParagraph } from "@/lib/renderRichParagraph";
+
 
 const lessonColors = [
   "from-amber-500 to-orange-600",
