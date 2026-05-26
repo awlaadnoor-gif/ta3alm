@@ -220,7 +220,8 @@ export const curricula: Curriculum[] = [
  quizzes: [
  { title: "مسابقة اليوم الأول - صفحة 1", image: "/quizzes/quiz-day1-p1.webp" },
  { title: "مسابقة اليوم الأول - صفحة 2", image: "/quizzes/quiz-day1-p2.webp" },
- { title: "مسابقة اليوم الأول - صفحة 3", image: "/quizzes/quiz-day1-p3.webp" }
+ { title: "مسابقة اليوم الأول - صفحة 3", image: "/quizzes/quiz-day1-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الأول", image: "/coloring/coloring-day1.webp" }
  ],
  craft: {
  title: "أدلة وجود الله",
@@ -299,6 +300,12 @@ export const curricula: Curriculum[] = [
  title: "ترانيم اليوم الثاني (مش موجود)",
  image: "/hymns/hymns-day2.webp"
  }
+ ],
+ quizzes: [
+ { title: "مسابقة اليوم الثاني - صفحة 1", image: "/quizzes/quiz-day2-p1.webp" },
+ { title: "مسابقة اليوم الثاني - صفحة 2", image: "/quizzes/quiz-day2-p2.webp" },
+ { title: "مسابقة اليوم الثاني - صفحة 3", image: "/quizzes/quiz-day2-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الثاني", image: "/coloring/coloring-day2.webp" }
  ],
  content: [
  "إيليا النبي — في أحد الأيام، وبعد أن صنع الله معجزة عظيمة على جبل الكرمل، وظن الجميع أن إيليا النبي قد انتصر نهائيا وأن الشر قد انتهى، عاد الملك آخاب إلى قصره. هناك كانت إيزابل تنتظره، متلهفة لتسمع أخبار الاحتفال بالبعل، لكنها صدمت عندما علمت أن إله إسرائيل هو الذي استجاب وأن كهنة البعل قد قتلوا. اشتعل غضبها، ولم تتراجع، بل أرسلت رسالة تهديد مباشرة إلى إيليا تقول فيها إنها ستجعله مثل أحد أولئك الكهنة في اليوم التالي. كانت رسالة قصيرة، لكنها حملت خوفا شديدا.",
@@ -471,6 +478,12 @@ export const curricula: Curriculum[] = [
  hymns: [
  { title: "ترانيم اليوم الثلاث (مش مهم)", image: "/hymns/hymns-day3.webp" }
  ],
+ quizzes: [
+ { title: "مسابقة اليوم الثالث - صفحة 1", image: "/quizzes/quiz-day3-p1.webp" },
+ { title: "مسابقة اليوم الثالث - صفحة 2", image: "/quizzes/quiz-day3-p2.webp" },
+ { title: "مسابقة اليوم الثالث - صفحة 3", image: "/quizzes/quiz-day3-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الثالث", image: "/coloring/coloring-day3.webp" }
+ ],
  craft: {
  title: "صح وغلط - اليوم الثلاث",
  idea: "ورقة نشاط لمساعدة الأطفال على التمييز بين الأفكار الصحيحة والخاطئة عن الله من خللا درس اليوم.",
@@ -570,6 +583,12 @@ export const curricula: Curriculum[] = [
  },
  hymns: [
  { title: "ترانيم اليوم الرابع (مش قوي)", image: "/hymns/hymns-day4.webp" }
+ ],
+ quizzes: [
+ { title: "مسابقة اليوم الرابع - صفحة 1", image: "/quizzes/quiz-day4-p1.webp" },
+ { title: "مسابقة اليوم الرابع - صفحة 2", image: "/quizzes/quiz-day4-p2.webp" },
+ { title: "مسابقة اليوم الرابع - صفحة 3", image: "/quizzes/quiz-day4-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الرابع", image: "/coloring/coloring-day4.webp" }
  ],
  craft: {
  title: "صح وغلط - اليوم الرابع",
@@ -729,6 +748,12 @@ export const curricula: Curriculum[] = [
  },
  hymns: [
  { title: "ترانيم اليوم الخامس (مش لكل)", image: "/hymns/hymns-day5.webp" }
+ ],
+ quizzes: [
+ { title: "مسابقة اليوم الخامس - صفحة 1", image: "/quizzes/quiz-day5-p1.webp" },
+ { title: "مسابقة اليوم الخامس - صفحة 2", image: "/quizzes/quiz-day5-p2.webp" },
+ { title: "مسابقة اليوم الخامس - صفحة 3", image: "/quizzes/quiz-day5-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الخامس", image: "/coloring/coloring-day5.webp" }
  ],
  craft: {
  title: "الله موجود",
