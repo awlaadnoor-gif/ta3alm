@@ -220,7 +220,8 @@ export const curricula: Curriculum[] = [
  quizzes: [
  { title: "مسابقة اليوم الأول - صفحة 1", image: "/quizzes/quiz-day1-p1.webp" },
  { title: "مسابقة اليوم الأول - صفحة 2", image: "/quizzes/quiz-day1-p2.webp" },
- { title: "مسابقة اليوم الأول - صفحة 3", image: "/quizzes/quiz-day1-p3.webp" }
+ { title: "مسابقة اليوم الأول - صفحة 3", image: "/quizzes/quiz-day1-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الأول", image: "/coloring/coloring-day1.webp" }
  ],
  craft: {
  title: "أدلة وجود الله",
