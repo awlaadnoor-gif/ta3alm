@@ -584,6 +584,12 @@ export const curricula: Curriculum[] = [
  hymns: [
  { title: "ترانيم اليوم الرابع (مش قوي)", image: "/hymns/hymns-day4.webp" }
  ],
+ quizzes: [
+ { title: "مسابقة اليوم الرابع - صفحة 1", image: "/quizzes/quiz-day4-p1.webp" },
+ { title: "مسابقة اليوم الرابع - صفحة 2", image: "/quizzes/quiz-day4-p2.webp" },
+ { title: "مسابقة اليوم الرابع - صفحة 3", image: "/quizzes/quiz-day4-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الرابع", image: "/coloring/coloring-day4.webp" }
+ ],
  craft: {
  title: "صح وغلط - اليوم الرابع",
  idea: "ورقة نشاط لمساعدة الأطفال على التمييز بين الأفكار الصحيحة والخاطئة عن الله من خللا درس اليوم.",
