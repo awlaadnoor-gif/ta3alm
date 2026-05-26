@@ -478,6 +478,12 @@ export const curricula: Curriculum[] = [
  hymns: [
  { title: "ترانيم اليوم الثلاث (مش مهم)", image: "/hymns/hymns-day3.webp" }
  ],
+ quizzes: [
+ { title: "مسابقة اليوم الثالث - صفحة 1", image: "/quizzes/quiz-day3-p1.webp" },
+ { title: "مسابقة اليوم الثالث - صفحة 2", image: "/quizzes/quiz-day3-p2.webp" },
+ { title: "مسابقة اليوم الثالث - صفحة 3", image: "/quizzes/quiz-day3-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الثالث", image: "/coloring/coloring-day3.webp" }
+ ],
  craft: {
  title: "صح وغلط - اليوم الثلاث",
  idea: "ورقة نشاط لمساعدة الأطفال على التمييز بين الأفكار الصحيحة والخاطئة عن الله من خللا درس اليوم.",
