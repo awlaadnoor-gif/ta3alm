@@ -749,6 +749,12 @@ export const curricula: Curriculum[] = [
  hymns: [
  { title: "ترانيم اليوم الخامس (مش لكل)", image: "/hymns/hymns-day5.webp" }
  ],
+ quizzes: [
+ { title: "مسابقة اليوم الخامس - صفحة 1", image: "/quizzes/quiz-day5-p1.webp" },
+ { title: "مسابقة اليوم الخامس - صفحة 2", image: "/quizzes/quiz-day5-p2.webp" },
+ { title: "مسابقة اليوم الخامس - صفحة 3", image: "/quizzes/quiz-day5-p3.webp" },
+ { title: "مسابقة التلوين - اليوم الخامس", image: "/coloring/coloring-day5.webp" }
+ ],
  craft: {
  title: "الله موجود",
  idea: "نشاط جماعي ممتع يساعد الأطفال على تذكر صفات الله من خللا صنع خوافض اللسان الملونة وتعليقها كزينة تذكير يومي.",
